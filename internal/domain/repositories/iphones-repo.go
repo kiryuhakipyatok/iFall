@@ -1,0 +1,57 @@
+package repositories
+
+import (
+	"context"
+	"errors"
+	"iFall/internal/domain/models"
+	"iFall/pkg/errs"
+	"iFall/pkg/storage"
+)
+
+type IPhoneRepository interface {
+	Get(ctx context.Context, id string) (*models.IPhone, error)
+	Update(ctx context.Context, id string, price float64) (*models.IPhone, error)
+}
+
+type iPhoneRepository struct {
+	Storage *storage.Storage
+}
+
+func NewIPhoneRepository(s *storage.Storage) IPhoneRepository {
+	return &iPhoneRepository{
+		Storage: s,
+	}
+}
+
+const place = "iPhoneRepository."
+
+func (ir *iPhoneRepository) Get(ctx context.Context, id string) (*models.IPhone, error) {
+	op := place + "Get"
+	query := "SELECT * FROM iphones WHERE id = $1"
+	iphone := &models.IPhone{}
+	if err := ir.Storage.Pool.QueryRow(ctx, query, id).Scan(iphone); err != nil {
+		if errors.Is(err, storage.ErrNotFound()) {
+			return nil, errs.ErrNotFound(op)
+		}
+	}
+	return iphone, nil
+}
+
+func (ir *iPhoneRepository) Update(ctx context.Context, id string, price float64) (*models.IPhone, error) {
+	op := place + "Update"
+	query := "UPDATE iphones SET price=$1, change=$1-iphones.price WHERE id=$2 RETURNING name, price, color, change"
+	iphone := &models.IPhone{}
+	if err := ir.Storage.Pool.QueryRow(ctx, query, price, id).Scan(
+		&iphone.Name,
+		&iphone.Price,
+		&iphone.Color,
+		&iphone.Change,
+	); err != nil {
+		if errors.Is(err, storage.ErrNotFound()) {
+			return nil, errs.ErrNotFound(op)
+		}
+		return nil, errs.NewAppError(op, err)
+	}
+
+	return iphone, nil
+}

@@ -1,0 +1,47 @@
+app:
+  name: "iFall"
+  version: "1.0.0"
+  env: "${APP_ENV}"
+  logPath: "/logs/ifall.log"
+
+server:
+  host: "0.0.0.0"
+  port: "${SERVER_PORT}"
+  requestTimeout: 10s
+  closeTimeout: 30s
+
+storage:
+  user: "${POSTGRES_USER}"
+  password: "${POSTGRES_PASSWORD}"
+  database: "${POSTGRES_DB}"
+  timezone: "Europe/Minsk"
+  host: "postgres"
+  port: "${POSTGRES_PORT}"
+  sslMode: "${SSL_MODE}"
+  connectTimeout: 10s
+  pingTimeout: 5s
+  amountOfConns: 15
+
+email:
+  name: "iPhone Price Check"
+  address: "${EMAIL_ADDRESS}"
+  password: "${EMAIL_PASSWORD}"
+  smtpAddress: "smtp.gmail.com"
+  smtpServerAddress: "smtp.gmail.com:465"
+
+apiClient:
+  baseURL: "https://newton.by/mobilnye-telefony"
+  timeout: 10s
+
+scheduler:
+  hour: 18
+  minute: 0
+  timeout: 10s
+
+iphones:
+  black: "apple_iphone_17_256gb_chernyy"
+  blue: "apple_iphone_17_256gb_goluboy"
+  white: "apple_iphone_17_256gb_belyy"
+  green: ""
+  pink: ""
+  

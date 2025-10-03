@@ -1,0 +1,42 @@
+<html>
+  <body style="margin:0; padding:0; font-family:'Gill Sans', sans-serif; background-color:#f4f5f7;">
+
+    <div style="width:100%; max-width:600px; margin:auto; padding:0; overflow:hidden; border-radius:12px;">
+      <img src="https://img-cdn.inc.com/image/upload/f_webp,q_auto,c_fit,w_1024,h_1024/images/panoramic/getty_1055500818_386933.jpg" 
+           style="width:100%; height:auto; display:block; margin:0; padding:0; object-fit:cover;">
+    </div>
+
+    <table width="100%" cellpadding="0" cellspacing="0" 
+           style="max-width:600px; margin:auto; border-collapse:collapse; background-color:#ffffff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); overflow:hidden;">
+
+      <tr>
+        <td colspan="2" style="padding:16px; text-align:center; font-size:20px; font-weight:bold; color:#333;">
+          Обновление цен
+        </td>
+      </tr>
+
+      {{range $i, $item := .}}
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:16px; font-size:16px; vertical-align:middle; background-color:#{{$item.Color}}; color:#fff;">
+          <span style="font-weight:500; color:#666666">{{$item.Name}}</span>
+        </td>
+        <td style="padding:16px; font-size:15px; vertical-align:middle; text-align:right; white-space:nowrap;">
+          <span>💰 цена: <b style="color:#333; font-size:16px;">{{$item.Price}} byn</b></span>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <span>📉 разница: 
+            <b style="color:{{if gt $item.Change 0.0}}#2e7d32{{else if lt $item.Change 0.0}}#c62828{{else}}#666{{end}}; font-size:16px;">
+              {{if gt $item.Change 0.0}}+{{end}}{{if lt $item.Change 0.0}}-{{end}}{{abs $item.Change}} byn
+            </b>
+          </span>
+        </td>
+      </tr>
+      {{end}}
+      
+      <tr>
+        <td colspan="2" style="padding:16px; text-align:center; font-size:13px; color:#888;">
+          Данные обновляются ежедневно 📊
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
