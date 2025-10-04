@@ -1279,3 +1279,15 @@
 {"time":"2025-10-04T19:24:00.149470096+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
 {"time":"2025-10-04T19:24:00.15334163+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
 {"time":"2025-10-04T19:24:00.153507684+03:00","level":"INFO","msg":"sending iphone info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotSendIphoneInfo"}
+{"time":"2025-10-04T22:53:32.501459406+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:53:32.566493467+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:53:32.566797726+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:53:32.69970727+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:53:32.700136318+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:53:32.701081854+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:53:37.957660744+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:53:38.135735003+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : already exists : ERROR: duplicate key value violates unique constraint \"users_name_key\" (SQLSTATE 23505)"}
+{"time":"2025-10-04T22:54:41.861101505+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:54:41.862239986+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:54:41.863960988+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:54:41.865212788+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
