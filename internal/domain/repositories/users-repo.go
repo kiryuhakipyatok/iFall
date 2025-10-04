@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"context"
+	"errors"
 	"iFall/internal/domain/models"
 	"iFall/pkg/errs"
 	"iFall/pkg/storage"
@@ -9,7 +10,9 @@ import (
 
 type UserRepository interface {
 	Create(ctx context.Context, user *models.User) error
-	FetchEmails(ctx context.Context) ([]string, error)
+	FetchContacts(ctx context.Context) ([]models.Contacts, error)
+	SetChatId(ctx context.Context, telegram string, chatId int64) error
+	DropChatId(ctx context.Context, telegram string, chatId int64) error
 }
 
 type userRepository struct {
@@ -38,21 +41,79 @@ func (ur *userRepository) Create(ctx context.Context, user *models.User) error {
 	return nil
 }
 
-func (ur *userRepository) FetchEmails(ctx context.Context) ([]string, error) {
-	op := "userRepository.Create"
-	query := "SELECT email FROM users"
-	emails := []string{}
+func (ur *userRepository) DropChatId(ctx context.Context, telegram string, chatId int64) error {
+	op := place + "DropChatId"
+	exist, err := ur.checkChatId(ctx, op, telegram, chatId)
+	if err != nil {
+		return err
+	}
+	if exist {
+		return errs.ErrNotFound(op)
+	}
+	query := "UPDATE users SET chat_id = null WHERE telegram = $1 AND chat_id = $2"
+	res, err := ur.Storage.Pool.Exec(ctx, query, telegram, chatId)
+	if err != nil {
+		return errs.NewAppError(op, err)
+	}
+	if res.RowsAffected() == 0 {
+		return errs.ErrNotFound(op)
+	}
+	return nil
+}
+
+func (ur *userRepository) SetChatId(ctx context.Context, telegram string, chatId int64) error {
+	op := place + "SetChatId"
+	exist, err := ur.checkChatId(ctx, op, telegram, chatId)
+	if err != nil {
+		return err
+	}
+	if !exist {
+		return errs.ErrAlreadyExists(op, errors.New("same chat_id already exists"))
+	}
+
+	uQuery := "UPDATE users SET chat_id = $1 WHERE telegram = $2"
+	if _, err := ur.Storage.Pool.Exec(ctx, uQuery, chatId, telegram); err != nil {
+		return errs.NewAppError(op, err)
+	}
+
+	return nil
+}
+
+func (ur *userRepository) FetchContacts(ctx context.Context) ([]models.Contacts, error) {
+	op := "userRepository.FetchContacts"
+	query := "SELECT email, chat_id FROM users"
+	contacts := []models.Contacts{}
 	res, err := ur.Storage.Pool.Query(ctx, query)
 	if err != nil {
 		return nil, errs.NewAppError(op, err)
 	}
 	defer res.Close()
 	for res.Next() {
-		var email string
-		if err := res.Scan(&email); err != nil {
+		var contact models.Contacts
+		if err := res.Scan(
+			&contact.Email,
+			&contact.ChatId,
+		); err != nil {
 			return nil, errs.NewAppError(op, err)
 		}
-		emails = append(emails, email)
+		contacts = append(contacts, contact)
 	}
-	return emails, nil
+	return contacts, nil
+}
+
+func (ur *userRepository) checkChatId(ctx context.Context, op, telegram string, chatId int64) (bool, error) {
+	var cid *int64
+	cQuery := "SELECT chat_id FROM users WHERE telegram = $1"
+	if err := ur.Storage.Pool.QueryRow(ctx, cQuery, telegram).Scan(&cid); err != nil {
+		if err == storage.ErrNotFound() {
+			return false, errs.ErrNotFound(op)
+		}
+		return false, errs.NewAppError(op, err)
+	}
+
+	if cid != nil && *cid == chatId {
+		return false, nil
+	}
+
+	return true, nil
 }

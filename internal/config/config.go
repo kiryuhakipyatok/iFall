@@ -11,13 +11,14 @@ import (
 )
 
 type Config struct {
-	App       AppConfig       `mapstructure:"app"`
-	Storage   StorageConfig   `mapstructure:"storage"`
-	Server    ServerConfig    `mapstructure:"server"`
-	Email     EmailConfig     `mapstructure:"email"`
-	ApiClient ApiClientConfig `mapstructure:"apiClient"`
-	Scheduler SchedulerConfig `mapstructure:"scheduler"`
-	IPhones   IPhonesConfig   `mapstructure:"iphones"`
+	App         AppConfig         `mapstructure:"app"`
+	Storage     StorageConfig     `mapstructure:"storage"`
+	Server      ServerConfig      `mapstructure:"server"`
+	Email       EmailConfig       `mapstructure:"email"`
+	ApiClient   ApiClientConfig   `mapstructure:"apiClient"`
+	Scheduler   SchedulerConfig   `mapstructure:"scheduler"`
+	IPhones     IPhonesConfig     `mapstructure:"iphones"`
+	TelegramBot TelegramBotConfig `mapstructure:"telegramBot"`
 }
 
 type AppConfig struct {
@@ -61,21 +62,23 @@ type ApiClientConfig struct {
 }
 
 type SchedulerConfig struct {
-	Hour    int           `mapstructure:"hour"`
-	Minute  int           `mapstructure:"minute"`
-	Timeout time.Duration `mapstructure:"timeout"`
+	Hour   int `mapstructure:"hour"`
+	Minute int `mapstructure:"minute"`
 }
 
 type IPhonesConfig struct {
-	Black string `mapstructure:"black"`
-	White string `mapstructure:"white"`
-	Green string `mapstructure:"green"`
-	Pink  string `mapstructure:"pink"`
-	Blue  string `mapstructure:"blue"`
+	Black   string        `mapstructure:"black"`
+	White   string        `mapstructure:"white"`
+	Green   string        `mapstructure:"green"`
+	Pink    string        `mapstructure:"pink"`
+	Blue    string        `mapstructure:"blue"`
+	Timeout time.Duration `mapstructure:"timeout"`
 }
 
-// type TelegramBot struct {
-// }
+type TelegramBotConfig struct {
+	Token   string        `mapstructure:"token"`
+	Timeout time.Duration `mapstructure:"timeout"`
+}
 
 func MustLoad(path string) *Config {
 	if path == "" {

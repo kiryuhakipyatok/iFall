@@ -1084,3 +1084,198 @@
 {"time":"2025-10-03T22:28:00.201989931+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
 {"time":"2025-10-03T22:28:00.202243183+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
 {"time":"2025-10-03T22:28:01.455195908+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T17:54:33.771335482+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:54:33.846387186+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:54:33.846715503+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:57:07.055528228+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:57:07.087973745+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:57:07.088302042+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:08.686354236+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:08.717171655+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:08.717531719+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:08.849900703+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:31.938911175+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:31.969827074+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:31.970216029+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T17:59:32.091217532+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:00:00.008906307+03:00","level":"INFO","msg":"updating iphone data","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T18:00:00.009443458+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T18:00:00.009446915+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T18:00:00.009517061+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T18:00:00.444378893+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T18:00:00.456415585+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T18:00:00.456427709+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T18:00:00.457070625+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T18:00:56.564177768+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:00:56.605795656+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:00:56.606246856+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:00:56.732953026+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:02:58.851646458+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:02:58.888353229+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:02:58.888675625+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:02:59.012503562+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:02:59.013348076+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:03:46.809156515+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:03:46.846010909+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:03:46.846357631+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:03:46.967362068+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:03:46.967817892+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:04:00.002356947+03:00","level":"INFO","msg":"updating iphone data","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T18:04:00.002766997+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T18:04:00.002816057+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T18:04:00.00279701+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T18:04:00.143329642+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T18:04:00.191693365+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T18:04:00.206106632+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T18:04:00.206473092+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T18:04:01.801347332+03:00","level":"INFO","msg":"sending iphone info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotSendIphoneInfo"}
+{"time":"2025-10-04T18:04:01.801770197+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T18:09:54.188815017+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:09:54.220917591+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:09:54.221176013+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:09:54.345731959+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:09:54.34630937+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:12:00.950169975+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:12:00.950737897+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:12:00.951068769+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:12:00.951797443+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:13:23.476007085+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:13:23.508395158+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:13:23.508844829+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:13:23.629773269+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:13:23.630135848+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T18:13:23.630527878+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:13:58.713143776+03:00","level":"ERROR","msg":"failed to store chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId","error":"iPhoneRepository.SetChatId : failed to encode args[0]: unable to encode 690694543 into text format for varchar (OID 1043): cannot find encode plan"}
+{"time":"2025-10-04T18:17:27.624446564+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:17:27.660843501+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:17:27.661201555+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:17:27.789375069+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:17:27.789970994+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T18:17:27.790419644+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:17:59.246797124+03:00","level":"ERROR","msg":"failed to store chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId","error":"iPhoneRepository.SetChatId : failed to encode args[0]: unable to encode 690694543 into text format for varchar (OID 1043): cannot find encode plan"}
+{"time":"2025-10-04T18:21:24.306504615+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:21:24.338050686+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:21:24.338518398+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:21:24.491352523+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:21:24.491741653+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T18:21:24.492265042+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:38:29.505396283+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:38:29.545407066+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:38:29.545685388+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:38:29.681235204+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:38:29.68212005+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T18:38:29.68259536+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:38:46.273798019+03:00","level":"ERROR","msg":"failed to store chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId","error":"iPhoneRepository.SetChatId : already exists : this chat id already registered"}
+{"time":"2025-10-04T18:54:23.487931426+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:54:23.527775749+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:54:23.528119482+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:54:23.655240615+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:54:23.65565771+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T18:54:23.656089473+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:58:47.138025858+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:58:47.171156789+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:58:47.171713248+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:58:47.30757212+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:58:47.307876242+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T18:58:47.308331939+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T18:59:29.077567111+03:00","level":"ERROR","msg":"failed to store chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId","error":"iPhoneRepository.SetChatId : not found"}
+{"time":"2025-10-04T19:00:32.032580671+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:00:32.058744824+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:00:32.059016647+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:00:32.174293683+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:00:32.174773926+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:00:32.175225968+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:01:59.102629184+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:01:59.12989937+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:01:59.130218811+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:01:59.252509187+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:01:59.252832721+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:01:59.253522353+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:02:00.00032103+03:00","level":"INFO","msg":"updating iphone data","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:02:00.000863836+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:02:00.000939182+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:02:00.001018136+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:02:00.138377023+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:02:00.164994071+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:02:00.185079975+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:02:00.185448101+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:02:00.189296047+03:00","level":"ERROR","msg":"failed to send iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData","error":"scheduler.sendIPhonesInfo : userRepository.FetchContacts : can't scan into dest[1] (col: chat_id): cannot scan NULL into *int64"}
+{"time":"2025-10-04T19:05:33.148452303+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:33.17734824+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:33.17769322+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:33.300007062+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:33.300707347+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:05:33.301063364+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:58.96551369+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:58.9928761+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:58.993201572+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:59.107043806+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:05:59.107494396+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:05:59.107927137+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:06:00.000579928+03:00","level":"INFO","msg":"updating iphone data","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:06:00.001525865+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:06:00.001593016+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:06:00.001794728+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:06:00.111742308+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:06:00.14835702+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:06:00.166056008+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:06:00.167150203+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:06:01.423714153+03:00","level":"INFO","msg":"sending iphone info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotSendIphoneInfo"}
+{"time":"2025-10-04T19:06:01.521137802+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:06:59.613595251+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T19:06:59.618365456+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : already exists : ERROR: duplicate key value violates unique constraint \"users_name_key\" (SQLSTATE 23505)"}
+{"time":"2025-10-04T19:08:33.306869021+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:08:33.352635772+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:08:33.35295926+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:08:33.478126179+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:08:33.478988153+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:08:33.479927898+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:08:40.632072152+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T19:09:48.326777561+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:09:48.358145218+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:09:48.358398701+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:09:48.475641095+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:09:48.476004116+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:09:48.476493922+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:10:00.001178868+03:00","level":"INFO","msg":"updating iphone data","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:10:00.001613743+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:10:00.001654802+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:10:00.001686178+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:10:00.127292129+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:10:00.152895875+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:10:00.168643606+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:10:00.169042972+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:10:01.329044985+03:00","level":"INFO","msg":"sending iphone info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotSendIphoneInfo"}
+{"time":"2025-10-04T19:10:01.388335349+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:12:22.381999064+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:12:22.413758987+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:12:22.414021507+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:12:22.793572911+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:12:22.794235181+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:12:22.794585238+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:13:00.006997354+03:00","level":"INFO","msg":"updating iphone data","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:13:00.00763045+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:13:00.007716794+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:13:00.007758871+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:13:00.126433251+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:13:00.161205632+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:13:00.175733061+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:13:00.176210789+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:13:01.316580682+03:00","level":"INFO","msg":"sending iphone info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotSendIphoneInfo"}
+{"time":"2025-10-04T19:13:01.387875228+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:23:56.180130385+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:23:56.214185569+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:23:56.214514205+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:23:56.343669239+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:23:56.344157682+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:23:56.344581209+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:24:00.003042616+03:00","level":"INFO","msg":"updating iphone data","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:24:00.003653288+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:24:00.003744881+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:24:00.003732277+03:00","level":"INFO","msg":"iphone updating","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:24:00.100898172+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_belyy"}
+{"time":"2025-10-04T19:24:00.135580267+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_goluboy"}
+{"time":"2025-10-04T19:24:00.149119222+03:00","level":"INFO","msg":"iphone updated","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"iPhoneService.Update","id":"apple_iphone_17_256gb_chernyy"}
+{"time":"2025-10-04T19:24:00.149470096+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:24:00.15334163+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
+{"time":"2025-10-04T19:24:00.153507684+03:00","level":"INFO","msg":"sending iphone info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotSendIphoneInfo"}

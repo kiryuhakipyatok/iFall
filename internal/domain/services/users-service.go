@@ -11,7 +11,7 @@ import (
 )
 
 type UserService interface {
-	Create(ctx context.Context, name, email, telegram string) error
+	Create(ctx context.Context, name, email string, telegram *string) error
 }
 
 type userService struct {
@@ -26,15 +26,17 @@ func NewUserService(ur repositories.UserRepository, l *logger.Logger) UserServic
 	}
 }
 
-func (us *userService) Create(ctx context.Context, name, email, telegram string) error {
+func (us *userService) Create(ctx context.Context, name, email string, telegram *string) error {
 	op := "userService.Create"
 	log := us.Logger.AddOp(op)
 	log.Info("creating user")
 	user := &models.User{
-		Id:       uuid.New(),
-		Name:     name,
-		Email:    email,
-		Telegram: telegram,
+		Id:   uuid.New(),
+		Name: name,
+		Contacts: models.Contacts{
+			Email:    email,
+			Telegram: telegram,
+		},
 	}
 	if err := us.UserRepository.Create(ctx, user); err != nil {
 		log.Error("failed to create user", logger.Err(err))

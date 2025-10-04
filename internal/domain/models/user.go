@@ -5,7 +5,11 @@ import "github.com/google/uuid"
 type User struct {
 	Id       uuid.UUID `json:"id"`
 	Name     string    `json:"name"`
-	Email    string    `json:"email"`
-	Telegram string    `json:"telegram"`
-	ChatId   int       `json:"-"`
+	Contacts `json:"contacts"`
+}
+
+type Contacts struct {
+	Email    string  `json:"email"`
+	Telegram *string `json:"telegram"`
+	ChatId   *int64  `json:"-"`
 }

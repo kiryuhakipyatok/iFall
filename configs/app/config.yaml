@@ -36,7 +36,6 @@ apiClient:
 scheduler:
   hour: 18
   minute: 0
-  timeout: 10s
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"
@@ -44,4 +43,9 @@ iphones:
   white: "apple_iphone_17_256gb_belyy"
   green: ""
   pink: ""
+  timeout: 5s
+
+telegramBot:
+  token: "8358166598:AAE22ZlSMsCkL4sIrFLfuIAwxU6HCCr5Psc"
+  timeout: 10s
   
