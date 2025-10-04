@@ -25,24 +25,22 @@ func NewUserRepository(s *storage.Storage) UserRepository {
 	}
 }
 
+const usersRepo = "userRepository."
+
 func (ur *userRepository) Create(ctx context.Context, user *models.User) error {
-	op := "userRepository.Create"
+	op := usersRepo + "Create"
 	query := "INSERT INTO users (id, name, email, telegram) VALUES ($1, $2, $3, $4)"
-	res, err := ur.Storage.Pool.Exec(ctx, query, user.Id, user.Name, user.Email, user.Telegram)
-	if err != nil {
+	if _, err := ur.Storage.DB.ExecContext(ctx, query, user.Id, user.Name, user.Email, user.Telegram); err != nil {
 		if storage.ErrorAlreadyExists(err) {
 			return errs.ErrAlreadyExists(op, err)
 		}
 		return errs.NewAppError(op, err)
 	}
-	if res.RowsAffected() == 0 {
-		return errs.ErrNotFound(op)
-	}
 	return nil
 }
 
 func (ur *userRepository) DropChatId(ctx context.Context, telegram string, chatId int64) error {
-	op := place + "DropChatId"
+	op := usersRepo + "DropChatId"
 	exist, err := ur.checkChatId(ctx, op, telegram, chatId)
 	if err != nil {
 		return err
@@ -51,18 +49,19 @@ func (ur *userRepository) DropChatId(ctx context.Context, telegram string, chatI
 		return errs.ErrNotFound(op)
 	}
 	query := "UPDATE users SET chat_id = null WHERE telegram = $1 AND chat_id = $2"
-	res, err := ur.Storage.Pool.Exec(ctx, query, telegram, chatId)
+	res, err := ur.Storage.DB.ExecContext(ctx, query, telegram, chatId)
 	if err != nil {
 		return errs.NewAppError(op, err)
 	}
-	if res.RowsAffected() == 0 {
+	rowsAff, _ := res.RowsAffected()
+	if rowsAff == 0 {
 		return errs.ErrNotFound(op)
 	}
 	return nil
 }
 
 func (ur *userRepository) SetChatId(ctx context.Context, telegram string, chatId int64) error {
-	op := place + "SetChatId"
+	op := usersRepo + "SetChatId"
 	exist, err := ur.checkChatId(ctx, op, telegram, chatId)
 	if err != nil {
 		return err
@@ -72,7 +71,7 @@ func (ur *userRepository) SetChatId(ctx context.Context, telegram string, chatId
 	}
 
 	uQuery := "UPDATE users SET chat_id = $1 WHERE telegram = $2"
-	if _, err := ur.Storage.Pool.Exec(ctx, uQuery, chatId, telegram); err != nil {
+	if _, err := ur.Storage.DB.ExecContext(ctx, uQuery, chatId, telegram); err != nil {
 		return errs.NewAppError(op, err)
 	}
 
@@ -80,10 +79,10 @@ func (ur *userRepository) SetChatId(ctx context.Context, telegram string, chatId
 }
 
 func (ur *userRepository) FetchContacts(ctx context.Context) ([]models.Contacts, error) {
-	op := "userRepository.FetchContacts"
+	op := usersRepo + "FetchContacts"
 	query := "SELECT email, chat_id FROM users"
 	contacts := []models.Contacts{}
-	res, err := ur.Storage.Pool.Query(ctx, query)
+	res, err := ur.Storage.DB.QueryContext(ctx, query)
 	if err != nil {
 		return nil, errs.NewAppError(op, err)
 	}
@@ -104,7 +103,7 @@ func (ur *userRepository) FetchContacts(ctx context.Context) ([]models.Contacts,
 func (ur *userRepository) checkChatId(ctx context.Context, op, telegram string, chatId int64) (bool, error) {
 	var cid *int64
 	cQuery := "SELECT chat_id FROM users WHERE telegram = $1"
-	if err := ur.Storage.Pool.QueryRow(ctx, cQuery, telegram).Scan(&cid); err != nil {
+	if err := ur.Storage.DB.QueryRowContext(ctx, cQuery, telegram).Scan(&cid); err != nil {
 		if err == storage.ErrNotFound() {
 			return false, errs.ErrNotFound(op)
 		}

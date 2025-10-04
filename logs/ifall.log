@@ -1279,3 +1279,152 @@
 {"time":"2025-10-04T19:24:00.149470096+03:00","level":"INFO","msg":"sending iphones info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
 {"time":"2025-10-04T19:24:00.15334163+03:00","level":"INFO","msg":"iphones info sended","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"scheduler.GetIPhoneData"}
 {"time":"2025-10-04T19:24:00.153507684+03:00","level":"INFO","msg":"sending iphone info","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotSendIphoneInfo"}
+{"time":"2025-10-04T19:31:21.19568418+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:31:21.229266648+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:31:21.229674612+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:31:21.35463694+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:31:21.355300581+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:31:21.355789492+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:32:50.703808907+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:32:50.704380388+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:32:50.704928865+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:32:50.705443355+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:19.410186089+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:19.464452209+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:19.464893016+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:19.586564913+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:19.58709081+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T19:33:19.587595667+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:23.850644031+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:23.851098214+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:23.851490467+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T19:33:23.851989016+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:37:33.202826207+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:38:11.437473372+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:38:34.096918597+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:39:20.272007494+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:44:48.110434381+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:46:20.325238884+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:52:06.212745506+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:52:06.221486748+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:52:06.22186311+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:52:06.36050869+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:52:06.360837464+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T21:52:06.361183412+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:52:12.130523669+03:00","level":"ERROR","msg":"failed to store chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId","error":"userRepository.SetChatId : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T21:52:13.149676604+03:00","level":"ERROR","msg":"failed to store chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId","error":"userRepository.SetChatId : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T21:59:08.844952253+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:08.846178497+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:08.848251785+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:08.854220855+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:25.535291242+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:25.540837671+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:25.541172422+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:25.668912726+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:25.669264631+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T21:59:25.669746719+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T21:59:54.332488635+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T21:59:54.33540062+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:03:50.642630724+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:03:50.644810026+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:04:52.564371749+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:04:52.573540957+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:04:52.573897105+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:04:52.706977181+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:04:52.707348063+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:04:52.707789151+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:07:26.730778063+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:07:26.737685354+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:07:26.738255684+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:07:26.860238267+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:07:26.860604149+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:07:26.861101597+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:43.180612329+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:43.181283985+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:43.181730559+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:43.18355926+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:59.805479951+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:59.812129029+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:59.812538761+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:59.93498499+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:08:59.935472022+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:08:59.936039576+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:12:54.114180911+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:12:54.114872526+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:12:54.115283415+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:12:54.117535373+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:13:18.645306762+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:13:18.652265904+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:13:18.652620393+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:13:18.776674518+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:13:18.777030195+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:13:18.777391903+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:14:38.091227293+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:14:38.097390695+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:14:38.097860936+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:14:38.227273246+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:14:38.227603176+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:14:38.228021261+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:29.881245345+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:29.882679378+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:29.883137087+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:29.885484306+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:51.997324933+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:52.005599726+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:52.00599832+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:52.127073615+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:18:52.127714987+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:18:52.128274434+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:27:41.160005397+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:27:41.162878934+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:28:07.74974865+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:28:07.752077324+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:28:39.926173826+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:28:39.926755801+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:28:39.927249935+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:28:39.929886451+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:29:25.297487088+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:29:25.309254592+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:29:25.309739399+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:29:25.469689427+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:29:25.47009237+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:29:25.470604555+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:29:37.171067236+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:29:37.175635101+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:33:12.130805962+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:12.131683515+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:12.132290068+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:12.135214575+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:36.191548003+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:36.201350377+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:36.201637585+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:36.320651984+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:33:36.320996217+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:33:36.321597596+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:34:59.945030125+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:34:59.947765909+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:40:39.165182951+03:00","level":"INFO","msg":"app shutting down...","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:40:39.167382223+03:00","level":"INFO","msg":"bot stopped successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:40:39.168404132+03:00","level":"INFO","msg":"server closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:40:39.170791243+03:00","level":"INFO","msg":"postgres closed successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:42:39.621564993+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:43:26.977621236+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:43:26.983149378+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:43:26.983510238+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:43:27.118936731+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:43:27.119246562+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:43:27.119602669+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:44:18.993190962+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:44:18.99519258+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:46:07.589492918+03:00","level":"INFO","msg":"config loaded successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:46:07.594201852+03:00","level":"INFO","msg":"connected to postgres successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:46:07.594555548+03:00","level":"INFO","msg":"server created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:46:07.715619365+03:00","level":"INFO","msg":"bot created successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:46:07.716405661+03:00","level":"INFO","msg":"storing chat id","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"telegramBotStoreChatId"}
+{"time":"2025-10-04T22:46:07.717385242+03:00","level":"INFO","msg":"bot started successfully","type":"app","env":"dev","app":"iFall","version":"1.0.0"}
+{"time":"2025-10-04T22:46:16.477072481+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:46:16.47913536+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:46:48.61954405+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:46:48.622114956+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}
+{"time":"2025-10-04T22:47:08.093092748+03:00","level":"INFO","msg":"creating user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create"}
+{"time":"2025-10-04T22:47:08.095301182+03:00","level":"ERROR","msg":"failed to create user","type":"app","env":"dev","app":"iFall","version":"1.0.0","op":"userService.Create","error":"userRepository.Create : SQL logic error: no such table: users (1)"}

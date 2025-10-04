@@ -21,6 +21,7 @@ storage:
   connectTimeout: 10s
   pingTimeout: 5s
   amountOfConns: 15
+  path: "/storage/storage.db"
 
 email:
   name: "iPhone Price Check"

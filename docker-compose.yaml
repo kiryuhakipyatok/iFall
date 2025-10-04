@@ -5,32 +5,33 @@ services:
       - .env
     volumes:
       - ./logs/:/logs/
+      - ./storage:/storage/
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
-    depends_on:
-      postgres:
-        condition: service_healthy
+    # depends_on:
+    #   postgres:
+    #     condition: service_healthy
     networks:
       - app-network
     stop_grace_period: 5s
 
-  postgres:
-    image: postgres:latest
-    volumes:
-      - .db/postgres/data:/var/lib/postgresql/data
-    env_file:
-      - .env
-    ports:
-      - ${POSTGRES_PORT}:5432
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 10s
-      retries: 5
-      start_period: 30s
-      timeout: 10s
-    networks:
-      - app-network
-    stop_grace_period: 5s
+  # postgres:
+  #   image: postgres:latest
+  #   volumes:
+  #     - .db/postgres/data:/var/lib/postgresql/data
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - ${POSTGRES_PORT}:5432
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+  #     interval: 10s
+  #     retries: 5
+  #     start_period: 30s
+  #     timeout: 10s
+  #   networks:
+  #     - app-network
+  #   stop_grace_period: 5s
 
   migrate:
     build: ./

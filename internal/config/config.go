@@ -46,6 +46,7 @@ type StorageConfig struct {
 	ConnectTimeout time.Duration `mapstructure:"connectTimeout"`
 	PingTimeout    time.Duration `mapstructure:"pingTimeout"`
 	AmountOfConns  int32         `mapstructure:"amountOfConns"`
+	Path           string        `mapstructure:"path"`
 }
 
 type EmailConfig struct {
