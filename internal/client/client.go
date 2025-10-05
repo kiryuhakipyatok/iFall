@@ -6,7 +6,6 @@ import (
 	"iFall/internal/domain/models"
 	"iFall/pkg/errs"
 	"net/http"
-	"regexp"
 	"strconv"
 	"strings"
 
@@ -26,17 +25,6 @@ func NewClient(cfg config.ApiClientConfig) *ApiClient {
 		Client:  &client,
 		BaseURL: cfg.BaseURL,
 	}
-}
-
-var nonDigit = regexp.MustCompile(`\D`)
-
-func parseMajorPrice(s string) (float64, error) {
-	s = strings.ReplaceAll(s, "\u00A0", " ")
-	digits := nonDigit.ReplaceAllString(s, "")
-	if digits == "" {
-		return 0, fmt.Errorf("no digits in price %q", s)
-	}
-	return strconv.ParseFloat(digits, 32)
 }
 
 func (ac *ApiClient) GetIPhoneData(id string) (*models.IPhone, error) {
@@ -61,13 +49,13 @@ func (ac *ApiClient) GetIPhoneData(id string) (*models.IPhone, error) {
 	}
 	name := strings.TrimSpace(doc.Find(`h1[itemprop="name"]`).First().Text())
 	priceSel := doc.Find(".price-block .price:not(.old)").First()
-	priceSel.Find("i").Remove()
 	rawPrice := strings.TrimSpace(priceSel.Text())
-
-	price, err := parseMajorPrice(rawPrice)
+	strPrice := strings.ReplaceAll(rawPrice, " ", "")
+	floatPrice, err := strconv.ParseFloat(strPrice, 32)
 	if err != nil {
 		return nil, errs.NewAppError(op, err)
 	}
+	price := floatPrice / 100
 	iphone := &models.IPhone{
 		Name:  name,
 		Price: price,

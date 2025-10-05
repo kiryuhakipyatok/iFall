@@ -90,6 +90,9 @@ const (
 	blue     = "🟦"
 	white    = "⬜"
 	black    = "⬛"
+	plus     = "+"
+	minus    = "-"
+	zero     = ""
 )
 
 func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error {
@@ -98,6 +101,7 @@ func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone)
 	for _, iphone := range iphones {
 		graf := grafDef
 		color := white
+		sign := zero
 		switch iphone.Color {
 		case "F5F5F5":
 			color = white
@@ -109,10 +113,12 @@ func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone)
 
 		if iphone.Change > 0 {
 			graf = grafUp
+			sign = plus
 		} else if iphone.Change < 0 {
 			graf = grafDown
+			sign = minus
 		}
-		msgArr = append(msgArr, fmt.Sprintf("%s %s:\n 💰 цена: %.2f | %s разница: %.2f\n", iphone.Name, color, iphone.Price, graf, iphone.Change))
+		msgArr = append(msgArr, fmt.Sprintf("%s %s:\n 💰 цена: %.2f | %s разница: %s%.2f\n", iphone.Name, color, iphone.Price, graf, sign, iphone.Change))
 	}
 	msg := strings.Join(msgArr, "\n")
 	errChan := make(chan error, len(chatIds))
