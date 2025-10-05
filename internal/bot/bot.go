@@ -39,7 +39,7 @@ func NewTelegramBot(cfg config.TelegramBotConfig, l *logger.Logger, ur repositor
 	}
 }
 
-const place = "telegramBot"
+const place = "telegramBot."
 
 func (tb *TelegramBot) StoreChatId() {
 	op := place + "StoreChatId"
@@ -83,13 +83,36 @@ func (tb *TelegramBot) StoreChatId() {
 	})
 }
 
+const (
+	grafUp   = "📈"
+	grafDown = "📉"
+	grafDef  = "0️⃣"
+	blue     = "🟦"
+	white    = "⬜"
+	black    = "⬛"
+)
+
 func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error {
 	op := place + "SendIphoneInfo"
-	log := tb.Logger.AddOp(op)
-	log.Info("sending iphone info")
 	msgArr := []string{}
 	for _, iphone := range iphones {
-		msgArr = append(msgArr, fmt.Sprintf("%s:\n 💰 цена: %.2f | 📉 разница: %.2f\n", iphone.Name, iphone.Price, iphone.Change))
+		graf := grafDef
+		color := white
+		switch iphone.Color {
+		case "F5F5F5":
+			color = white
+		case "353839":
+			color = black
+		case "96AED1":
+			color = blue
+		}
+
+		if iphone.Change > 0 {
+			graf = grafUp
+		} else if iphone.Change < 0 {
+			graf = grafDown
+		}
+		msgArr = append(msgArr, fmt.Sprintf("%s %s:\n 💰 цена: %.2f | %s разница: %.2f\n", iphone.Name, color, iphone.Price, graf, iphone.Change))
 	}
 	msg := strings.Join(msgArr, "\n")
 	errChan := make(chan error, len(chatIds))
@@ -109,7 +132,7 @@ func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone)
 	}()
 	if len(errChan) > 0 {
 		for err := range errChan {
-			log.Error("failed to send iphones info", logger.Err(err))
+
 			return errs.NewAppError(op, err)
 		}
 	}

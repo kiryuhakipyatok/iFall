@@ -32,22 +32,18 @@ func NewScheduler(is services.IPhoneService, irs services.IphoneReportService, l
 
 func (s *Scheduler) Start() {
 	if _, err := s.Cron.AddFunc(fmt.Sprintf("%d %d * * *", s.SchedulerConfig.Minute, s.SchedulerConfig.Hour), func() {
-		op := "scheduler.GetIPhoneData"
+		op := "scheduler.IphonesPriceChecking"
 		log := s.Logger.AddOp(op)
-		log.Info("updating iphone data")
 		iphones, err := s.IPhoneService.UpdateAll()
 		if err != nil {
 			log.Error("failed to updated iphones info", logger.Err(err))
 		} else if len(iphones) > 0 {
-			log.Info("sending iphones info")
 			if err := s.IPhoneReportService.SendIPhonesInfo(iphones); err != nil {
 				log.Error("failed to send iphones info", logger.Err(err))
-			} else {
-				log.Info("iphones info sended")
 			}
 		}
 	}); err != nil {
-		panic(fmt.Errorf("failed to start scheduler: %w", err))
+		panic(fmt.Errorf("failed to start IphonesPriceChecking: %w", err))
 	}
 	s.Cron.Start()
 }

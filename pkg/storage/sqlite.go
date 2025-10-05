@@ -23,6 +23,7 @@ func MustConnect(path string) *Storage {
 	if err := db.Ping(); err != nil {
 		panic(fmt.Errorf("failed to ping sqlite: %w", err))
 	}
+	db.Exec("PRAGMA journal_mode=WAL")
 	return &Storage{
 		DB: db,
 	}

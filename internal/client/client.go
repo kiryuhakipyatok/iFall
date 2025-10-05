@@ -42,7 +42,6 @@ func parseMajorPrice(s string) (float64, error) {
 func (ac *ApiClient) GetIPhoneData(id string) (*models.IPhone, error) {
 	op := "apiClient.GetIPhoneData"
 	url := fmt.Sprintf("%s/%s", ac.BaseURL, id)
-	fmt.Println(url)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, errs.NewAppError(op, err)
@@ -73,6 +72,5 @@ func (ac *ApiClient) GetIPhoneData(id string) (*models.IPhone, error) {
 		Name:  name,
 		Price: price,
 	}
-	fmt.Println(iphone)
 	return iphone, nil
 }

@@ -5,7 +5,7 @@ services:
       - .env
     volumes:
       - ./logs/:/logs/
-      - ./storage:/storage/
+      - ./storage:/storage
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     # depends_on:
@@ -38,6 +38,7 @@ services:
     env_file:
       - .env
     volumes:
+      - ./storage:/storage
       - ./internal/migrations:/migrations
     entrypoint: ["goose", "-dir", "/migrations"]
     networks:
