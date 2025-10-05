@@ -11,16 +11,7 @@ server:
   closeTimeout: 30s
 
 storage:
-  user: "${POSTGRES_USER}"
-  password: "${POSTGRES_PASSWORD}"
-  database: "${POSTGRES_DB}"
-  timezone: "Europe/Minsk"
-  host: "postgres"
-  port: "${POSTGRES_PORT}"
-  sslMode: "${SSL_MODE}"
-  connectTimeout: 10s
   pingTimeout: 5s
-  amountOfConns: 15
   path: "/storage/storage.db"
 
 email:
@@ -35,8 +26,8 @@ apiClient:
   timeout: 10s
 
 scheduler:
-  hour: 19
-  minute: 40
+  hour: 20
+  minute: 23
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"
@@ -47,6 +38,6 @@ iphones:
   timeout: 5s
 
 telegramBot:
-  token: "8358166598:AAE22ZlSMsCkL4sIrFLfuIAwxU6HCCr5Psc"
+  token: "${TELEGRAM_BOT_TOKEN}"
   timeout: 10s
   

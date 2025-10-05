@@ -27,7 +27,7 @@ func Run() {
 
 	validator := validator.NewValidator()
 
-	storage := storage.MustConnect(cfg.Storage.Path)
+	storage := storage.MustConnect(cfg.Storage)
 	logger.Info("connected to postgres successfully")
 	defer func() {
 		storage.MustClose()

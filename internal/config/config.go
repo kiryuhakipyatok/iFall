@@ -36,17 +36,8 @@ type ServerConfig struct {
 }
 
 type StorageConfig struct {
-	Host           string        `mapstructure:"host"`
-	Port           string        `mapstructure:"port"`
-	User           string        `mapstructure:"user"`
-	Password       string        `mapstructure:"password"`
-	Database       string        `mapstructure:"database"`
-	SSLMode        string        `mapstructure:"sslMode"`
-	Timezone       string        `mapstructure:"timezone"`
-	ConnectTimeout time.Duration `mapstructure:"connectTimeout"`
-	PingTimeout    time.Duration `mapstructure:"pingTimeout"`
-	AmountOfConns  int32         `mapstructure:"amountOfConns"`
-	Path           string        `mapstructure:"path"`
+	PingTimeout time.Duration `mapstructure:"pingTimeout"`
+	Path        string        `mapstructure:"path"`
 }
 
 type EmailConfig struct {

@@ -1,7 +1,9 @@
 package storage
 
 import (
+	"context"
 	"database/sql"
+	"iFall/internal/config"
 
 	_ "modernc.org/sqlite"
 
@@ -12,7 +14,8 @@ type Storage struct {
 	DB *sql.DB
 }
 
-func MustConnect(path string) *Storage {
+func MustConnect(cfg config.StorageConfig) *Storage {
+	path := cfg.Path
 	if path == "" {
 		panic("storage path is empty")
 	}
@@ -20,7 +23,9 @@ func MustConnect(path string) *Storage {
 	if err != nil {
 		panic(fmt.Errorf("failed to connect to sqlite: %w", err))
 	}
-	if err := db.Ping(); err != nil {
+	ctx, cancel := context.WithTimeout(context.Background(), cfg.PingTimeout)
+	defer cancel()
+	if err := db.PingContext(ctx); err != nil {
 		panic(fmt.Errorf("failed to ping sqlite: %w", err))
 	}
 	db.Exec("PRAGMA journal_mode=WAL")
