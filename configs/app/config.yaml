@@ -21,6 +21,7 @@ storage:
   connectTimeout: 10s
   pingTimeout: 5s
   amountOfConns: 15
+  path: "/storage/storage.db"
 
 email:
   name: "iPhone Price Check"
@@ -34,8 +35,8 @@ apiClient:
   timeout: 10s
 
 scheduler:
-  hour: 18
-  minute: 0
+  hour: 17
+  minute: 49
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"

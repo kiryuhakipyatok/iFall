@@ -23,6 +23,7 @@ type iPhoneService struct {
 	IPhonesConfig    config.IPhonesConfig
 	EmailSendler     *email.EmailSender
 	Logger           *logger.Logger
+	Mutex            sync.Mutex
 }
 
 func NewIPhoneService(ir repositories.IPhoneRepository, ac *client.ApiClient, l *logger.Logger, es *email.EmailSender, cfg config.IPhonesConfig) IPhoneService {
@@ -50,7 +51,7 @@ func (is *iPhoneService) Get(ctx context.Context, id string) (*models.IPhone, er
 }
 
 func (is *iPhoneService) update(ctx context.Context, id string) (*models.IPhone, error) {
-	op := place + "Update"
+	op := place + "update"
 	log := is.Logger.AddOp(op)
 	log.Info("iphone updating", "id", id)
 	iphoneData, err := is.ApiClient.GetIPhoneData(id)
@@ -58,18 +59,21 @@ func (is *iPhoneService) update(ctx context.Context, id string) (*models.IPhone,
 		log.Error("failed to receive iphone data", logger.Err(err))
 		return nil, errs.NewAppError(op, err)
 	}
+	is.Mutex.Lock()
 	iphone, err := is.IPhoneRepository.Update(ctx, id, iphoneData.Price)
 	if err != nil {
 		log.Error("failed to update iphone", logger.Err(err))
 		return nil, errs.NewAppError(op, err)
 	}
-
+	is.Mutex.Unlock()
 	log.Info("iphone updated", "id", id)
 	return iphone, nil
 }
 
 func (is *iPhoneService) UpdateAll() ([]models.IPhone, error) {
-	op := "scheduler.updateAll"
+	op := place + "updateAll"
+	log := is.Logger.AddOp(op)
+	log.Info("updating all iphones")
 	iphones := []string{
 		is.IPhonesConfig.Black,
 		is.IPhonesConfig.Green,
@@ -104,20 +108,19 @@ func (is *iPhoneService) UpdateAll() ([]models.IPhone, error) {
 			}
 		}(v)
 	}
-	go func() {
-		wg.Wait()
-		close(errChan)
-		close(iphoneChan)
-	}()
-	if len(errChan) > 0 {
-		for err := range errChan {
-			return nil, errs.NewAppError(op, err.err)
-		}
+
+	wg.Wait()
+	close(errChan)
+	close(iphoneChan)
+
+	for err := range errChan {
+		return nil, errs.NewAppError(op, err.err)
 	}
 
 	iphonesData := []models.IPhone{}
 	for i := range iphoneChan {
 		iphonesData = append(iphonesData, i)
 	}
+	log.Info("all iphones updated")
 	return iphonesData, nil
 }

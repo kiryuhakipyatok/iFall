@@ -27,10 +27,10 @@ func Run() {
 
 	validator := validator.NewValidator()
 
-	storage := storage.MustConnect(cfg.Storage)
+	storage := storage.MustConnect(cfg.Storage.Path)
 	logger.Info("connected to postgres successfully")
 	defer func() {
-		storage.Close()
+		storage.MustClose()
 		logger.Info("postgres closed successfully")
 	}()
 
@@ -58,8 +58,9 @@ func Run() {
 	}()
 
 	userService := services.NewUserService(userRepository, logger)
+
 	iphoneService := services.NewIPhoneService(iphoneRepository, client, logger, emailSender, cfg.IPhones)
-	iphoneReportService := services.NewIPhoneReportService(iphoneService, userRepository, bot, emailSender, cfg.IPhones)
+	iphoneReportService := services.NewIPhoneReportService(iphoneService, userRepository, logger, bot, emailSender, cfg.IPhones)
 
 	userHandler := handlers.NewUsersHandler(userService, validator)
 

@@ -23,13 +23,13 @@ func NewIPhoneRepository(s *storage.Storage) IPhoneRepository {
 	}
 }
 
-const place = "iPhoneRepository."
+const iphonesRepo = "iPhoneRepository."
 
 func (ir *iPhoneRepository) Get(ctx context.Context, id string) (*models.IPhone, error) {
-	op := place + "Get"
+	op := iphonesRepo + "Get"
 	query := "SELECT * FROM iphones WHERE id = $1"
 	iphone := &models.IPhone{}
-	if err := ir.Storage.Pool.QueryRow(ctx, query, id).Scan(iphone); err != nil {
+	if err := ir.Storage.DB.QueryRowContext(ctx, query, id).Scan(iphone); err != nil {
 		if errors.Is(err, storage.ErrNotFound()) {
 			return nil, errs.ErrNotFound(op)
 		}
@@ -38,10 +38,10 @@ func (ir *iPhoneRepository) Get(ctx context.Context, id string) (*models.IPhone,
 }
 
 func (ir *iPhoneRepository) Update(ctx context.Context, id string, price float64) (*models.IPhone, error) {
-	op := place + "Update"
+	op := iphonesRepo + "Update"
 	query := "UPDATE iphones SET price=$1, change=$1-iphones.price WHERE id=$2 RETURNING name, price, color, change"
 	iphone := &models.IPhone{}
-	if err := ir.Storage.Pool.QueryRow(ctx, query, price, id).Scan(
+	if err := ir.Storage.DB.QueryRowContext(ctx, query, price, id).Scan(
 		&iphone.Name,
 		&iphone.Price,
 		&iphone.Color,
