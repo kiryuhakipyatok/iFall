@@ -91,7 +91,6 @@ const (
 	white    = "⬜"
 	black    = "⬛"
 	plus     = "+"
-	minus    = "-"
 	zero     = ""
 )
 
@@ -116,7 +115,6 @@ func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone)
 			sign = plus
 		} else if iphone.Change < 0 {
 			graf = grafDown
-			sign = minus
 		}
 		msgArr = append(msgArr, fmt.Sprintf("%s %s:\n 💰 цена: %.2f | %s разница: %s%.2f\n", iphone.Name, color, iphone.Price, graf, sign, iphone.Change))
 	}

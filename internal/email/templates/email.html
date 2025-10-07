@@ -27,7 +27,7 @@
             {{if gt $item.Change 0.0}}📈{{else if lt $item.Change 0.0}}📉{{else}}0️⃣{{end}}
             разница: 
             <b style="color:{{if gt $item.Change 0.0}}#c62828{{else if lt $item.Change 0.0}}#2e7d32{{else}}#666{{end}}; font-size:16px;">
-              {{if gt $item.Change 0.0}}+{{end}}{{if lt $item.Change 0.0}}-{{end}}{{abs $item.Change}} byn
+              {{if gt $item.Change 0.0}}+{{end}}{{if lt $item.Change 0.0}}-{{end}}{{printf "%.2f" (abs $item.Change)}} byn
             </b>
           </span>
         </td>
