@@ -90,6 +90,8 @@ const (
 	blue     = "🟦"
 	white    = "⬜"
 	black    = "⬛"
+	green    = "🟩"
+	pink     = "🟪"
 	plus     = "+"
 	zero     = ""
 )
@@ -108,6 +110,10 @@ func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone)
 			color = black
 		case "96AED1":
 			color = blue
+		case "A9B689":
+			color = green
+		case "DFCEEA":
+			color = pink
 		}
 
 		if iphone.Change > 0 {
