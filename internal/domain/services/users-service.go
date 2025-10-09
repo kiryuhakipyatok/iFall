@@ -42,5 +42,6 @@ func (us *userService) Create(ctx context.Context, name, email string, telegram 
 		log.Error("failed to create user", logger.Err(err))
 		return errs.NewAppError(op, err)
 	}
+	log.Info("user created successfully")
 	return nil
 }

@@ -19,14 +19,14 @@ type IPhoneService interface {
 
 type iPhoneService struct {
 	IPhoneRepository repositories.IPhoneRepository
-	ApiClient        *client.ApiClient
+	ApiClient        client.ApiClient
 	IPhonesConfig    config.IPhonesConfig
-	EmailSendler     *email.EmailSender
+	EmailSendler     email.EmailSender
 	Logger           *logger.Logger
 	Mutex            sync.Mutex
 }
 
-func NewIPhoneService(ir repositories.IPhoneRepository, ac *client.ApiClient, l *logger.Logger, es *email.EmailSender, cfg config.IPhonesConfig) IPhoneService {
+func NewIPhoneService(ir repositories.IPhoneRepository, ac client.ApiClient, l *logger.Logger, es email.EmailSender, cfg config.IPhonesConfig) IPhoneService {
 	return &iPhoneService{
 		IPhoneRepository: ir,
 		ApiClient:        ac,
@@ -47,6 +47,7 @@ func (is *iPhoneService) Get(ctx context.Context, id string) (*models.IPhone, er
 		log.Error("failed to receive iphone", logger.Err(err))
 		return nil, errs.NewAppError(op, err)
 	}
+	log.Info("iphone received: %s", iphone.Id)
 	return iphone, nil
 }
 

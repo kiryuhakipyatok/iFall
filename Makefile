@@ -18,7 +18,7 @@ docker-run-infra:
 docker-run-app:
 	@docker-compose up ifall --build
 
-docker-run-all: docker-migrate-up docker-run-app
+docker-run-all: test docker-migrate-up docker-run-app
 
 docker-down:
 	@docker-compose down
@@ -29,7 +29,6 @@ docker-build:
 test:
 	@echo "Testing..."
 	@go test ./... -v
-
 clean:
 	@echo "Cleaning..."
 	@rm -f main.exe
