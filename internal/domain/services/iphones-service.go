@@ -47,7 +47,7 @@ func (is *iPhoneService) Get(ctx context.Context, id string) (*models.IPhone, er
 		log.Error("failed to receive iphone", logger.Err(err))
 		return nil, errs.NewAppError(op, err)
 	}
-	log.Info("iphone received: %s", iphone.Id)
+	log.Info("iphone received", "id", iphone.Id)
 	return iphone, nil
 }
 

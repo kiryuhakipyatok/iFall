@@ -8,6 +8,7 @@ import (
 	"iFall/pkg/storage"
 )
 
+//go:generate mockgen -source=users-repo.go -destination=mocks/users-repo-mock.go
 type UserRepository interface {
 	Create(ctx context.Context, user *models.User) error
 	FetchContacts(ctx context.Context) ([]models.Contacts, error)

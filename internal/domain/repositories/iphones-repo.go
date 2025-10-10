@@ -8,6 +8,7 @@ import (
 	"iFall/pkg/storage"
 )
 
+//go:generate mockgen -source=iphones-repo.go -destination=mocks/iphones-repo-mock.go
 type IPhoneRepository interface {
 	Get(ctx context.Context, id string) (*models.IPhone, error)
 	Update(ctx context.Context, id string, price float64) (*models.IPhone, error)

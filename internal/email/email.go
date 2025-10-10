@@ -12,6 +12,7 @@ import (
 	"github.com/jordan-wright/email"
 )
 
+//go:generate mockgen -source=email.go -destination=mocks/email-mock.go
 type EmailSender interface {
 	SendMessage(ctx context.Context, sub string, content []byte, to []string, attachFiles []string) error
 }

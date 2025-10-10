@@ -12,6 +12,7 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
+//go:generate mockgen -source=client.go -destination=mocks/client-mock.go
 type ApiClient interface {
 	GetIPhoneData(id string) (*models.IPhone, error)
 }

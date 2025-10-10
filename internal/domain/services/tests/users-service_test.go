@@ -4,72 +4,123 @@ import (
 	"context"
 	"iFall/internal/config"
 	"iFall/internal/domain/models"
-	repoMocks "iFall/internal/domain/repositories/mocks"
+	mock_repositories "iFall/internal/domain/repositories/mocks"
 	"iFall/internal/domain/services"
 	"iFall/pkg/errs"
 	"iFall/pkg/logger"
 	"testing"
 
+	"github.com/golang/mock/gomock"
+	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/mock"
 )
 
-func TestCreateUser(t *testing.T) {
+func TestUserService_Create(t *testing.T) {
+
+	type ttData struct {
+		name          string
+		email         string
+		telegram      *string
+		expectedError error
+	}
+
+	type mockBehavior = func(s *mock_repositories.MockUserRepository, ctx context.Context, tt ttData)
+
 	tests := []struct {
 		testName string
-		name     string
-		email    string
-		telegram *string
-		isError  bool
-		result   error
+		ttData
+		mockBehavior mockBehavior
 	}{
 		{
 			testName: "success create without telegram",
-			name:     "sanya",
-			email:    "sanyaemail@gmail.com",
-			telegram: nil,
-			isError:  false,
-			result:   nil,
+			ttData: ttData{
+				name:          "sanya",
+				email:         "sanyaemail@gmail.com",
+				telegram:      nil,
+				expectedError: nil,
+			},
+
+			mockBehavior: func(s *mock_repositories.MockUserRepository, ctx context.Context, tt ttData) {
+				s.EXPECT().Create(ctx, gomock.Any()).DoAndReturn(func(ctx context.Context, user *models.User) error {
+					assert.Equal(t, tt.name, user.Name)
+					assert.Equal(t, tt.email, user.Email)
+					assert.Nil(t, user.Telegram)
+					assert.NotEqual(t, uuid.Nil, user.Id)
+					return tt.expectedError
+				})
+			},
 		},
 		{
 			testName: "success create with telegram",
-			name:     "kir",
-			email:    "kiremail@gmail.com",
-			telegram: toPtr("kirtg"),
-			isError:  false,
-			result:   nil,
+			ttData: ttData{
+				name:          "kir",
+				email:         "kiremail@gmail.com",
+				telegram:      toPtr("kirtg"),
+				expectedError: nil,
+			},
+			mockBehavior: func(s *mock_repositories.MockUserRepository, ctx context.Context, tt ttData) {
+				s.EXPECT().Create(ctx, gomock.Any()).DoAndReturn(func(ctx context.Context, user *models.User) error {
+					assert.Equal(t, tt.name, user.Name)
+					assert.Equal(t, tt.email, user.Email)
+					assert.Equal(t, tt.telegram, user.Telegram)
+					assert.NotEqual(t, uuid.Nil, user.Id)
+					return tt.expectedError
+				})
+			},
 		},
 		{
-			testName: "already exists",
-			name:     "kir",
-			email:    "kiremail@gmail.com",
-			telegram: toPtr("kirtg"),
-			isError:  true,
-			result:   errs.ErrAlreadyExistsBase,
+			testName: "already exists with telegram",
+			ttData: ttData{
+				name:          "kir",
+				email:         "kiremail@gmail.com",
+				telegram:      toPtr("kirtg"),
+				expectedError: errs.ErrAlreadyExistsBase,
+			},
+			mockBehavior: func(s *mock_repositories.MockUserRepository, ctx context.Context, tt ttData) {
+				s.EXPECT().Create(ctx, gomock.Any()).DoAndReturn(func(_ context.Context, user *models.User) error {
+					assert.Equal(t, tt.name, user.Name)
+					assert.Equal(t, tt.email, user.Email)
+					assert.Equal(t, tt.telegram, user.Telegram)
+					assert.NotEqual(t, uuid.Nil, user.Id)
+					return tt.expectedError
+				})
+			},
+		},
+		{
+			testName: "already exists without telegram",
+			ttData: ttData{
+				name:          "sanya",
+				email:         "sanyaemail@gmail.com",
+				telegram:      nil,
+				expectedError: errs.ErrAlreadyExistsBase,
+			},
+			mockBehavior: func(s *mock_repositories.MockUserRepository, ctx context.Context, tt ttData) {
+				s.EXPECT().Create(ctx, gomock.Any()).DoAndReturn(func(ctx context.Context, user *models.User) error {
+					assert.Equal(t, tt.name, user.Name)
+					assert.Equal(t, tt.email, user.Email)
+					assert.Nil(t, user.Telegram)
+					assert.NotEqual(t, uuid.Nil, user.Id)
+					return tt.expectedError
+				})
+			},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.testName, func(t *testing.T) {
-			mockUserRepo := new(repoMocks.MockUserRepository)
-			logger := logger.NewLogger(config.AppConfig{Name: "test", Version: "1.0.0", Env: "test", LogPath: "test.log"})
-			if tt.isError {
-				mockUserRepo.On("Create", mock.Anything, mock.AnythingOfType("*models.User")).Return(tt.result)
-			} else {
-				mockUserRepo.On("Create", mock.Anything, mock.AnythingOfType("*models.User")).Return(nil)
-			}
+			c := gomock.NewController(t)
+			defer c.Finish()
+			logger := logger.NewLogger(config.AppConfig{Name: "test", Env: "test", Version: "test", LogPath: "test.log"})
+			mockUserRepo := mock_repositories.NewMockUserRepository(c)
 			userService := services.NewUserService(mockUserRepo, logger)
+			ctx := context.Background()
+
+			tt.mockBehavior(mockUserRepo, ctx, tt.ttData)
 			err := userService.Create(context.Background(), tt.name, tt.email, tt.telegram)
-			if tt.isError {
-				assert.Error(t, err)
-				assert.ErrorIs(t, err, tt.result)
-			} else {
+			if tt.expectedError == nil {
 				assert.NoError(t, err)
-				assert.Nil(t, err)
+			} else {
+				assert.ErrorIs(t, err, tt.expectedError)
 			}
-			mockUserRepo.AssertCalled(t, "Create", mock.Anything, mock.MatchedBy(func(u *models.User) bool {
-				return u.Name == tt.name && u.Email == tt.email && ((u.Telegram == nil && tt.telegram == nil) || u.Telegram != nil && tt.telegram != nil && *u.Telegram == *tt.telegram)
-			}))
-			mockUserRepo.AssertExpectations(t)
 		})
 	}
 }
