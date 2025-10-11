@@ -30,7 +30,13 @@ func (ir *iPhoneRepository) Get(ctx context.Context, id string) (*models.IPhone,
 	op := iphonesRepo + "Get"
 	query := "SELECT * FROM iphones WHERE id = $1"
 	iphone := &models.IPhone{}
-	if err := ir.Storage.DB.QueryRowContext(ctx, query, id).Scan(iphone); err != nil {
+	if err := ir.Storage.DB.QueryRowContext(ctx, query, id).Scan(
+		&iphone.Id,
+		&iphone.Name,
+		&iphone.Price,
+		&iphone.Change,
+		&iphone.Color,
+	); err != nil {
 		if errors.Is(err, storage.ErrNotFound()) {
 			return nil, errs.ErrNotFound(op)
 		}

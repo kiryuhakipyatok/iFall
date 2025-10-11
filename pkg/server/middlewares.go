@@ -18,7 +18,8 @@ func ErrorHandler(c *fiber.Ctx, err error) error {
 	if errors.As(err, &apiErr) {
 		return c.Status(apiErr.Code).JSON(apiErr)
 	}
-	return apierr.InternalServerError()
+	internalErr := apierr.InternalServerError()
+	return c.Status(internalErr.Code).JSON(internalErr)
 }
 
 func RequestTimeoutMiddleware(timeout time.Duration) fiber.Handler {

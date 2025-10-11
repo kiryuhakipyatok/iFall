@@ -94,9 +94,9 @@ func TestIphoneService_Update(t *testing.T) {
 		{
 			testName: "success update",
 			ttData: ttData{
-				id: "00000000-0000-0000-0000-000000000000",
+				id: "iphone1-id",
 				expectedResult: &models.IPhone{
-					Id:     "00000000-0000-0000-0000-000000000000",
+					Id:     "iphone1-id",
 					Name:   "iphone1",
 					Price:  900.0,
 					Change: 100.0,
@@ -108,13 +108,13 @@ func TestIphoneService_Update(t *testing.T) {
 			mockBehavior: func(mr *mock_repositories.MockIPhoneRepository, mc *mock_client.MockApiClient, ctx context.Context, ttData ttData) {
 				gomock.InOrder(
 					mc.EXPECT().GetIPhoneData(ttData.id).Return(&models.IPhone{
-						Id:    "00000000-0000-0000-0000-000000000000",
+						Id:    "iphone1-id",
 						Name:  "iphone1",
 						Price: 900.0,
 						Color: "ffffff",
 					}, nil),
 					mr.EXPECT().Update(ctx, ttData.id, 900.0).Return(&models.IPhone{
-						Id:     "00000000-0000-0000-0000-000000000000",
+						Id:     "iphone1-id",
 						Name:   "iphone1",
 						Price:  900.0,
 						Change: 100.0,
@@ -126,7 +126,7 @@ func TestIphoneService_Update(t *testing.T) {
 		{
 			testName: "not found",
 			ttData: ttData{
-				id:             "00000000-0000-0000-0000-000000000000",
+				id:             "iphone1-id",
 				expectedResult: nil,
 				expectedError:  errs.ErrNotFoundBase,
 			},
@@ -134,7 +134,7 @@ func TestIphoneService_Update(t *testing.T) {
 			mockBehavior: func(mr *mock_repositories.MockIPhoneRepository, mc *mock_client.MockApiClient, ctx context.Context, ttData ttData) {
 				gomock.InOrder(
 					mc.EXPECT().GetIPhoneData(ttData.id).Return(&models.IPhone{
-						Id:    "00000000-0000-0000-0000-000000000000",
+						Id:    "iphone1-id",
 						Name:  "iphone1",
 						Price: 900.0,
 						Color: "ffffff",

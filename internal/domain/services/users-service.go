@@ -10,6 +10,7 @@ import (
 	"github.com/google/uuid"
 )
 
+//go:generate mockgen -source=users-service.go -destination=mocks/users-service-mock.go
 type UserService interface {
 	Create(ctx context.Context, name, email string, telegram *string) error
 }
