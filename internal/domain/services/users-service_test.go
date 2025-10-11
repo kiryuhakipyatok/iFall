@@ -5,7 +5,7 @@ import (
 	"iFall/internal/config"
 	"iFall/internal/domain/models"
 	mock_repositories "iFall/internal/domain/repositories/mocks"
-	"iFall/internal/domain/services"
+	"iFall/internal/utils"
 	"iFall/pkg/errs"
 	"iFall/pkg/logger"
 	"testing"
@@ -55,7 +55,7 @@ func TestUserService_Create(t *testing.T) {
 			ttData: ttData{
 				name:          "kir",
 				email:         "kiremail@gmail.com",
-				telegram:      toPtr("kirtg"),
+				telegram:      utils.StrToPtr("kirtg"),
 				expectedError: nil,
 			},
 			mockBehavior: func(s *mock_repositories.MockUserRepository, ctx context.Context, tt ttData) {
@@ -73,7 +73,7 @@ func TestUserService_Create(t *testing.T) {
 			ttData: ttData{
 				name:          "kir",
 				email:         "kiremail@gmail.com",
-				telegram:      toPtr("kirtg"),
+				telegram:      utils.StrToPtr("kirtg"),
 				expectedError: errs.ErrAlreadyExistsBase,
 			},
 			mockBehavior: func(s *mock_repositories.MockUserRepository, ctx context.Context, tt ttData) {
@@ -109,9 +109,9 @@ func TestUserService_Create(t *testing.T) {
 		t.Run(tt.testName, func(t *testing.T) {
 			c := gomock.NewController(t)
 			defer c.Finish()
-			logger := logger.NewLogger(config.AppConfig{Name: "test", Env: "test", Version: "test", LogPath: "test.log"})
+			logger := logger.NewLogger(config.AppConfig{Name: "test", Env: "test", Version: "test", LogPath: ""})
 			mockUserRepo := mock_repositories.NewMockUserRepository(c)
-			userService := services.NewUserService(mockUserRepo, logger)
+			userService := NewUserService(mockUserRepo, logger)
 			ctx := context.Background()
 
 			tt.mockBehavior(mockUserRepo, ctx, tt.ttData)
@@ -123,8 +123,4 @@ func TestUserService_Create(t *testing.T) {
 			}
 		})
 	}
-}
-
-func toPtr(s string) *string {
-	return &s
 }

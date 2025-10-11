@@ -60,7 +60,7 @@ func Run() {
 	userService := services.NewUserService(userRepository, logger)
 
 	iphoneService := services.NewIPhoneService(iphoneRepository, client, logger, emailSender, cfg.IPhones)
-	iphoneReportService := services.NewIPhoneReportService(iphoneService, userRepository, logger, bot, emailSender, cfg.IPhones)
+	iphoneReportService := services.NewIPhoneReportService(userRepository, logger, bot, emailSender, cfg.IPhones)
 
 	userHandler := handlers.NewUsersHandler(userService, validator)
 

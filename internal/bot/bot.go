@@ -15,14 +15,22 @@ import (
 	telebot "gopkg.in/telebot.v4"
 )
 
-type TelegramBot struct {
+//go:generate mockgen -source=bot.go -destination=mocks/bot-mock.go
+type TelegramBot interface {
+	StoreChatId()
+	SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error
+	Start()
+	Stop()
+}
+
+type telegramBot struct {
 	Bot            *telebot.Bot
 	Config         config.TelegramBotConfig
 	Logger         *logger.Logger
 	UserRepository repositories.UserRepository
 }
 
-func NewTelegramBot(cfg config.TelegramBotConfig, l *logger.Logger, ur repositories.UserRepository) *TelegramBot {
+func NewTelegramBot(cfg config.TelegramBotConfig, l *logger.Logger, ur repositories.UserRepository) TelegramBot {
 	pref := telebot.Settings{
 		Token:  cfg.Token,
 		Poller: &telebot.LongPoller{Timeout: cfg.Timeout},
@@ -31,7 +39,7 @@ func NewTelegramBot(cfg config.TelegramBotConfig, l *logger.Logger, ur repositor
 	if err != nil {
 		panic(fmt.Errorf("failed to create new telegram bot: %w", err))
 	}
-	return &TelegramBot{
+	return &telegramBot{
 		Bot:            bot,
 		Config:         cfg,
 		UserRepository: ur,
@@ -41,7 +49,7 @@ func NewTelegramBot(cfg config.TelegramBotConfig, l *logger.Logger, ur repositor
 
 const place = "telegramBot."
 
-func (tb *TelegramBot) StoreChatId() {
+func (tb *telegramBot) StoreChatId() {
 	op := place + "StoreChatId"
 	log := tb.Logger.AddOp(op)
 	log.Info("storing chat id")
@@ -96,7 +104,7 @@ const (
 	zero     = ""
 )
 
-func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error {
+func (tb *telegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error {
 	op := place + "SendIphoneInfo"
 	msgArr := []string{}
 	for _, iphone := range iphones {
@@ -149,10 +157,10 @@ func (tb *TelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone)
 	return nil
 }
 
-func (tb *TelegramBot) Start() {
+func (tb *telegramBot) Start() {
 	tb.Bot.Start()
 }
 
-func (tb *TelegramBot) Stop() {
+func (tb *telegramBot) Stop() {
 	tb.Bot.Stop()
 }
