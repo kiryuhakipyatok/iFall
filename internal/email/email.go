@@ -36,7 +36,9 @@ func (es *EmailSender) SendMessage(ctx context.Context, sub string, content []by
 			return errs.NewAppError(op, err)
 		}
 	}
-	dialer := &net.Dialer{}
+	dialer := &net.Dialer{
+		DualStack: false,
+	}
 
 	conn, err := dialer.DialContext(ctx, "tcp", es.EmailConfig.SmtpServerAddress)
 	if err != nil {
