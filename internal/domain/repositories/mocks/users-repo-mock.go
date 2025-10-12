@@ -35,6 +35,21 @@ func (m *MockUserRepository) EXPECT() *MockUserRepositoryMockRecorder {
 	return m.recorder
 }
 
+// CheckChatId mocks base method.
+func (m *MockUserRepository) CheckChatId(ctx context.Context, op, telegram string, chatId int64) (bool, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CheckChatId", ctx, op, telegram, chatId)
+	ret0, _ := ret[0].(bool)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CheckChatId indicates an expected call of CheckChatId.
+func (mr *MockUserRepositoryMockRecorder) CheckChatId(ctx, op, telegram, chatId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CheckChatId", reflect.TypeOf((*MockUserRepository)(nil).CheckChatId), ctx, op, telegram, chatId)
+}
+
 // Create mocks base method.
 func (m *MockUserRepository) Create(ctx context.Context, user *models.User) error {
 	m.ctrl.T.Helper()

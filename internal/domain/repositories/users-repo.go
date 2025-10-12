@@ -14,6 +14,7 @@ type UserRepository interface {
 	FetchContacts(ctx context.Context) ([]models.Contacts, error)
 	SetChatId(ctx context.Context, telegram string, chatId int64) error
 	DropChatId(ctx context.Context, telegram string, chatId int64) error
+	CheckChatId(ctx context.Context, op, telegram string, chatId int64) (bool, error)
 }
 
 type userRepository struct {
@@ -42,7 +43,7 @@ func (ur *userRepository) Create(ctx context.Context, user *models.User) error {
 
 func (ur *userRepository) DropChatId(ctx context.Context, telegram string, chatId int64) error {
 	op := usersRepo + "DropChatId"
-	exist, err := ur.checkChatId(ctx, op, telegram, chatId)
+	exist, err := ur.CheckChatId(ctx, op, telegram, chatId)
 	if err != nil {
 		return err
 	}
@@ -50,20 +51,16 @@ func (ur *userRepository) DropChatId(ctx context.Context, telegram string, chatI
 		return errs.ErrNotFound(op)
 	}
 	query := "UPDATE users SET chat_id = null WHERE telegram = $1 AND chat_id = $2"
-	res, err := ur.Storage.DB.ExecContext(ctx, query, telegram, chatId)
-	if err != nil {
+	if _, err := ur.Storage.DB.ExecContext(ctx, query, telegram, chatId); err != nil {
 		return errs.NewAppError(op, err)
 	}
-	rowsAff, _ := res.RowsAffected()
-	if rowsAff == 0 {
-		return errs.ErrNotFound(op)
-	}
+
 	return nil
 }
 
 func (ur *userRepository) SetChatId(ctx context.Context, telegram string, chatId int64) error {
 	op := usersRepo + "SetChatId"
-	exist, err := ur.checkChatId(ctx, op, telegram, chatId)
+	exist, err := ur.CheckChatId(ctx, op, telegram, chatId)
 	if err != nil {
 		return err
 	}
@@ -101,7 +98,9 @@ func (ur *userRepository) FetchContacts(ctx context.Context) ([]models.Contacts,
 	return contacts, nil
 }
 
-func (ur *userRepository) checkChatId(ctx context.Context, op, telegram string, chatId int64) (bool, error) {
+var errIncorrectChatId = errors.New("incorrect chatId")
+
+func (ur *userRepository) CheckChatId(ctx context.Context, op, telegram string, chatId int64) (bool, error) {
 	var cid *int64
 	cQuery := "SELECT chat_id FROM users WHERE telegram = $1"
 	if err := ur.Storage.DB.QueryRowContext(ctx, cQuery, telegram).Scan(&cid); err != nil {
@@ -113,6 +112,8 @@ func (ur *userRepository) checkChatId(ctx context.Context, op, telegram string, 
 
 	if cid != nil && *cid == chatId {
 		return false, nil
+	} else if cid != nil && *cid != chatId {
+		return false, errs.NewAppError(op, errIncorrectChatId)
 	}
 
 	return true, nil

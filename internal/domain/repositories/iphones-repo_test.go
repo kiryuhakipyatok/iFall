@@ -90,3 +90,71 @@ func TestIPhoneRepository_Get(t *testing.T) {
 		})
 	}
 }
+
+func TestIPhoneRepository_Update(t *testing.T) {
+	tests := []struct {
+		testName       string
+		id             string
+		price          float64
+		expectedResult *models.IPhone
+		expectedError  error
+	}{
+		{
+			testName: "success updating",
+			id:       "test-iphone-id",
+			price:    800,
+			expectedResult: &models.IPhone{
+				Name:   "iphone-name",
+				Price:  800,
+				Color:  "ffffff",
+				Change: -100,
+			},
+			expectedError: nil,
+		},
+		{
+			testName: "not found",
+			id:       "test-iphone-id2",
+			price:    800,
+			expectedResult: &models.IPhone{
+				Name:   "iphone-name",
+				Price:  800,
+				Color:  "ffffff",
+				Change: -100,
+			},
+			expectedError: errs.ErrNotFoundBase,
+		},
+	}
+
+	storage := storage.MustConnect(config.StorageConfig{Path: ":memory:", PingTimeout: time.Second})
+
+	schema := `
+   				CREATE TABLE IF NOT EXISTS iphones (
+    				id TEXT PRIMARY KEY,
+    				name TEXT NOT NULL UNIQUE,
+    				price NUMERIC NOT NULL,
+    				change NUMERIC NOT NULL DEFAULT 0,
+    				color TEXT NOT NULL DEFAULT 'ffffff'
+				);				
+    		`
+	if _, err := storage.DB.Exec(schema); err != nil {
+		t.Fatalf("failed to create test iphones table: %v", err)
+	}
+
+	if _, err := storage.DB.Exec("INSERT INTO iphones (id, name, price, change, color) VALUES($1,$2,$3,$4,$5)", "test-iphone-id", "iphone-name", 900, 0, "ffffff"); err != nil {
+		t.Fatalf("failed to insert test iphone data: %v", err)
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.testName, func(t *testing.T) {
+			repo := NewIPhoneRepository(storage)
+			iphone, err := repo.Update(context.Background(), tt.id, tt.price)
+			if tt.expectedError == nil {
+				assert.NoError(t, err)
+				assert.Equal(t, tt.expectedResult, iphone)
+			} else {
+				assert.Error(t, err)
+				assert.ErrorIs(t, err, tt.expectedError)
+			}
+		})
+	}
+}
