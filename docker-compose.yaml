@@ -14,7 +14,8 @@ services:
     stop_grace_period: 5s
 
   migrate:
-    build: ./
+    # build: ./
+    image: ifall-migrations-image:latest
     env_file:
       - .env
     volumes:

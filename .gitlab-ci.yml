@@ -21,6 +21,7 @@ build-job:
   stage: build
   script:
     - docker build -t ifall-image .
+    - docker build -t ifall-migrations-image .
 
 migrations-job:  
   stage: migrations   
