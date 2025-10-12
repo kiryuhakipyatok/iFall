@@ -9,7 +9,14 @@ RUN go install -tags='no_postgres no_mysql no_clickhouse no_mssql no_ydb no_vert
 
 COPY . .
 
-RUN go build -o ./bin/app cmd/app/main.go
+# RUN go build -o ./bin/app cmd/app/main.go
+RUN --mount=type=cache,target=/root/.cache/go-build \
+    go build \
+    -trimpath \
+    -ldflags="-s -w" \
+    -p 4 \
+    -o ./bin/app \
+    cmd/app/main.go
 
 FROM alpine AS runner
 
