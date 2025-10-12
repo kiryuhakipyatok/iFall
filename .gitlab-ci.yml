@@ -14,8 +14,7 @@ before_script:
   - echo "GOOSE_MIGRATIONS_DIR=$GOOSE_MIGRATIONS_DIR" >> .env
   - echo "MIGRATIONS_PATH=$MIGRATIONS_PATH" >> .env
   - echo "TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN" >> .env
-  - echo ".env file generated:"
-  - cat .env
+  - echo ".env file generated"
 
 build-job:      
   stage: build
