@@ -24,7 +24,14 @@ build-job:
 
 test-job:
   stage: test
+  image: golang:1.25-alpine
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - go/pkg/mod
+      - .cache/go-build
   script:
+    - go mod download
     - go test ./... -v -cover
 
 migrations-job:  
