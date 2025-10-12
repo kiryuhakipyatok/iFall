@@ -1,17 +1,16 @@
 services:
   ifall:
-    build: ./
+    # build: ./
     image: ifall-image:latest
     env_file:
       - .env
     volumes:
       - ./logs/:/logs/
       - ./storage:/storage
-    # ports:
-    #   - ${SERVER_PORT}:${SERVER_PORT}
-    network_mode: "host"
-    # networks:
-    #   - app-network
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    networks:
+      - app-network
     stop_grace_period: 5s
 
   migrate:

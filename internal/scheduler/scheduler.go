@@ -38,7 +38,7 @@ func (s *Scheduler) Start() {
 		if err != nil {
 			log.Error("failed to updated iphones info", logger.Err(err))
 		} else if len(iphones) > 0 {
-			if err := s.IPhoneReportService.SendIPhonesInfo(iphones); err != nil {
+			if err := s.IPhoneReportService.SendIPhonesInfo(s.SchedulerConfig.EmailSupp, iphones); err != nil {
 				log.Error("failed to send iphones info", logger.Err(err))
 			}
 		}

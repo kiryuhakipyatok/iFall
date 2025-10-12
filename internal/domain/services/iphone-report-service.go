@@ -13,7 +13,7 @@ import (
 )
 
 type IphoneReportService interface {
-	SendIPhonesInfo(iphones []models.IPhone) error
+	SendIPhonesInfo(emailSupp bool, iphones []models.IPhone) error
 }
 
 type iPhoneReportService struct {
@@ -36,7 +36,7 @@ func NewIPhoneReportService(is IPhoneService, ur repositories.UserRepository, l 
 	}
 }
 
-func (irs *iPhoneReportService) SendIPhonesInfo(iphones []models.IPhone) error {
+func (irs *iPhoneReportService) SendIPhonesInfo(emailSupp bool, iphones []models.IPhone) error {
 	op := "iPhoneReportService.sendIPhonesInfo"
 	log := irs.Logger.AddOp(op)
 	log.Info("sending iphones info")
@@ -50,7 +50,9 @@ func (irs *iPhoneReportService) SendIPhonesInfo(iphones []models.IPhone) error {
 	chatIds := []int64{}
 	if len(contacts) > 0 {
 		for _, c := range contacts {
-			emails = append(emails, c.Email)
+			if emailSupp {
+				emails = append(emails, c.Email)
+			}
 			if c.ChatId != nil {
 				chatIds = append(chatIds, *c.ChatId)
 			}
@@ -59,24 +61,31 @@ func (irs *iPhoneReportService) SendIPhonesInfo(iphones []models.IPhone) error {
 		return nil
 	}
 
-	errChan := make(chan error, len(contacts)+1)
+	errlen := len(chatIds) + 1
+	if emailSupp {
+		errlen = len(contacts) + 1
+	}
+
+	errChan := make(chan error, errlen)
 	var wg sync.WaitGroup
-	if len(emails) > 0 {
-		wg.Add(1)
-		log.Info("sending on emails")
-		emailCtx, cancel := context.WithTimeout(context.Background(), irs.IPonesConfig.Timeout)
-		defer cancel()
-		subject := "цена говнофона семнадцатого 17"
-		content, err := email.BuildEmailLetter(iphones)
-		if err != nil {
-			errChan <- err
-		}
-		go func() {
-			defer wg.Done()
-			if err := irs.EmailSender.SendMessage(emailCtx, subject, []byte(content), emails, nil); err != nil {
+	if emailSupp {
+		if len(emails) > 0 {
+			wg.Add(1)
+			log.Info("sending on emails")
+			emailCtx, cancel := context.WithTimeout(context.Background(), irs.IPonesConfig.Timeout)
+			defer cancel()
+			subject := "цена говнофона семнадцатого 17"
+			content, err := email.BuildEmailLetter(iphones)
+			if err != nil {
 				errChan <- err
 			}
-		}()
+			go func() {
+				defer wg.Done()
+				if err := irs.EmailSender.SendMessage(emailCtx, subject, []byte(content), emails, nil); err != nil {
+					errChan <- err
+				}
+			}()
+		}
 	}
 	if len(chatIds) > 0 {
 		wg.Add(1)
