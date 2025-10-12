@@ -3,6 +3,20 @@ stages:
   - migrations
   - deploy
 
+before_script:
+  - echo "CONFIG_PATH=$CONFIG_PATH" > .env
+  - echo "APP_ENV=$APP_ENV" >> .env
+  - echo "SERVER_PORT=$SERVER_PORT" >> .env
+  - echo "EMAIL_ADDRESS=$EMAIL_ADDRESS" >> .env
+  - echo "EMAIL_PASSWORD=$EMAIL_PASSWORD" >> .env
+  - echo "GOOSE_DRIVER=$GOOSE_DRIVER" >> .env
+  - echo "GOOSE_DBSTRING=$GOOSE_DBSTRING" >> .env
+  - echo "GOOSE_MIGRATIONS_DIR=$GOOSE_MIGRATIONS_DIR" >> .env
+  - echo "MIGRATIONS_PATH=$MIGRATIONS_PATH" >> .env
+  - echo "TELEGRAM_BOT_TOKEN=$TELEGRAM_BOT_TOKEN" >> .env
+  - echo ".env file generated:"
+  - cat .env
+
 build-job:      
   stage: build
   script:
