@@ -21,11 +21,14 @@ const (
 func NewLogger(acfg config.AppConfig) *Logger {
 	var log *slog.Logger
 	env := acfg.Env
-	logFile, err := os.OpenFile(acfg.LogPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
-	if err != nil {
-		panic(fmt.Errorf("failed to open log file: %w", err))
+	writer := io.Writer(os.Stdout)
+	if acfg.LogPath != "" {
+		logFile, err := os.OpenFile(acfg.LogPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+		if err != nil {
+			panic(fmt.Errorf("failed to open log file: %w", err))
+		}
+		writer = io.MultiWriter(logFile, os.Stdout)
 	}
-	writer := io.MultiWriter(logFile, os.Stdout)
 	switch env {
 	case local:
 		log = slog.New(slog.NewTextHandler(writer, &slog.HandlerOptions{Level: slog.LevelDebug}))

@@ -5,7 +5,7 @@ WORKDIR /usr/local/src
 COPY go.mod go.sum ./
 RUN go mod download 
 
-RUN go install github.com/pressly/goose/v3/cmd/goose@latest
+RUN go install -tags='no_postgres no_mysql no_clickhouse no_mssql no_ydb no_vertica no_libsql' github.com/pressly/goose/v3/cmd/goose@latest
 
 COPY . .
 
