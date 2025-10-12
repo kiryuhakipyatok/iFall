@@ -1,0 +1,19 @@
+stages:          
+  - build
+  - migrations
+  - deploy
+
+build-job:      
+  stage: build
+  script:
+    - docker build -t ifall-image .
+
+migrations-job:  
+  stage: migrations   
+  script:
+    - docker-compose run --rm migrate up
+
+deploy-job:      
+  stage: deploy  
+  script:
+    - docker-compose up -d ifall 

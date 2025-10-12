@@ -1,6 +1,7 @@
 services:
   ifall:
-    build: ./
+    # build: ./
+    image: ifall-image:latest
     env_file:
       - .env
     volumes:

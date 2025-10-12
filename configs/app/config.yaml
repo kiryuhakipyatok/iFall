@@ -2,7 +2,7 @@ app:
   name: "iFall"
   version: "1.0.0"
   env: "${APP_ENV}"
-  logPath: "/logs/ifall.log"
+  logPath: ""
 
 server:
   host: "0.0.0.0"
@@ -26,8 +26,8 @@ apiClient:
   timeout: 10s
 
 scheduler:
-  hour: 2
-  minute: 11
+  hour: 16
+  minute: 30
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"
