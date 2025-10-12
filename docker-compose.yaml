@@ -15,7 +15,7 @@ services:
 
   migrate:
     # build: ./
-    image: ifall-migrations-image:latest
+    image: ifall-image:latest
     env_file:
       - .env
     volumes:
