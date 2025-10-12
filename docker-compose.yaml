@@ -20,7 +20,7 @@ services:
       - .env
     volumes:
       - ./storage:/storage
-      - ./internal/migrations:/migrations
+    #   - ./internal/migrations:/migrations
     entrypoint: ["goose", "-dir", "/migrations"]
     networks:
       - app-network
