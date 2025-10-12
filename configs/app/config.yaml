@@ -19,15 +19,15 @@ email:
   address: "${EMAIL_ADDRESS}"
   password: "${EMAIL_PASSWORD}"
   smtpAddress: "smtp.gmail.com"
-  smtpServerAddress: "smtp.gmail.com:465"
+  smtpServerAddress: "smtp.gmail.com:587"
 
 apiClient:
   baseURL: "https://newton.by/mobilnye-telefony"
   timeout: 10s
 
 scheduler:
-  hour: 20
-  minute: 54
+  hour: 21
+  minute: 3
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"

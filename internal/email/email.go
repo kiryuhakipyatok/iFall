@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"iFall/internal/config"
 	"iFall/pkg/errs"
-	"net"
 	"net/smtp"
 
 	"github.com/jordan-wright/email"
@@ -36,28 +35,28 @@ func (es *EmailSender) SendMessage(ctx context.Context, sub string, content []by
 			return errs.NewAppError(op, err)
 		}
 	}
-	dialer := &net.Dialer{
-		DualStack: false,
-	}
+	// dialer := &net.Dialer{
+	// 	DualStack: false,
+	// }
 
-	conn, err := dialer.DialContext(ctx, "tcp", es.EmailConfig.SmtpServerAddress)
-	if err != nil {
-		return errs.NewAppError(op, err)
-	}
-	defer conn.Close()
+	// conn, err := dialer.DialContext(ctx, "tcp", es.EmailConfig.SmtpServerAddress)
+	// if err != nil {
+	// 	return errs.NewAppError(op, err)
+	// }
+	// defer conn.Close()
 	tlsConfig := &tls.Config{
 		ServerName: es.EmailConfig.SmtpAddress,
 	}
 
-	tlsConn := tls.Client(conn, tlsConfig)
-	client, err := smtp.NewClient(tlsConn, es.EmailConfig.SmtpAddress)
-	if err != nil {
-		return errs.NewAppError(op, err)
-	}
-	if err := client.Auth(es.Auth); err != nil {
-		return errs.NewAppError(op, err)
-	}
-	if err := e.SendWithTLS(es.EmailConfig.SmtpServerAddress, es.Auth, tlsConfig); err != nil {
+	// tlsConn := tls.Client(conn, tlsConfig)
+	// client, err := smtp.NewClient(tlsConn, es.EmailConfig.SmtpAddress)
+	// if err != nil {
+	// 	return errs.NewAppError(op, err)
+	// }
+	// if err := client.Auth(es.Auth); err != nil {
+	// 	return errs.NewAppError(op, err)
+	// }
+	if err := e.SendWithStartTLS(es.EmailConfig.SmtpServerAddress, es.Auth, tlsConfig); err != nil {
 		return errs.NewAppError(op, err)
 	}
 	return nil

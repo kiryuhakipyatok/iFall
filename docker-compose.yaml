@@ -1,6 +1,6 @@
 services:
   ifall:
-    # build: ./
+    build: ./
     image: ifall-image:latest
     env_file:
       - .env
@@ -9,6 +9,7 @@ services:
       - ./storage:/storage
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
+    # network_mode: "host"
     networks:
       - app-network
     stop_grace_period: 5s
