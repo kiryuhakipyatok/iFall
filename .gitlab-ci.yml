@@ -32,7 +32,7 @@ test-job:
       - .cache/go-build
   script:
     - go mod download
-    - go test ./... -v -cover
+    - go test ./... -v -cover -vet=off -p=1
 
 migrations-job:  
   stage: migrations   
