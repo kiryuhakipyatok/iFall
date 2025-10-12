@@ -1,5 +1,6 @@
 stages:          
   - build
+  - test
   - migrations
   - deploy
 
@@ -20,6 +21,11 @@ build-job:
   stage: build
   script:
     - docker build -t ifall-image .
+
+test-job:
+  stage: test
+  script:
+    - docker run --rm ifall-image go test ./... -v -cover
 
 migrations-job:  
   stage: migrations   
