@@ -10,6 +10,7 @@ import (
 	"github.com/google/uuid"
 )
 
+//go:generate mockgen -source=users-service.go -destination=mocks/users-service-mock.go
 type UserService interface {
 	Create(ctx context.Context, name, email string, telegram *string) error
 }
@@ -42,5 +43,6 @@ func (us *userService) Create(ctx context.Context, name, email string, telegram 
 		log.Error("failed to create user", logger.Err(err))
 		return errs.NewAppError(op, err)
 	}
+	log.Info("user created successfully")
 	return nil
 }

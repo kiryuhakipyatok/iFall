@@ -31,7 +31,7 @@ func NewAppError(op string, err error) AppError {
 }
 
 func ErrAlreadyExists(op string, err error) AppError {
-	return NewAppError(op, fmt.Errorf("%w : %w", ErrAlreadyExistsBase, err))
+	return NewAppError(op, fmt.Errorf("%w : %v", ErrAlreadyExistsBase, err))
 }
 
 func ErrNotFound(op string) AppError {

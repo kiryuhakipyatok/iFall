@@ -6,7 +6,6 @@ name=
 all: build test
 
 build:
-	@echo "Building..."
 	@go build -o main.exe cmd/app/main.go
 
 run:
@@ -18,7 +17,7 @@ docker-run-infra:
 docker-run-app:
 	@docker-compose up ifall --build
 
-docker-run-all: docker-migrate-up docker-run-app
+docker-run-all: test docker-migrate-up docker-run-app
 
 docker-down:
 	@docker-compose down
@@ -27,11 +26,8 @@ docker-build:
 	@docker-compose build --no-cache
 
 test:
-	@echo "Testing..."
 	@go test ./... -v
-
 clean:
-	@echo "Cleaning..."
 	@rm -f main.exe
 
 docker-migrate-up:

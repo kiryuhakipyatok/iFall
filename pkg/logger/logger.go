@@ -16,6 +16,7 @@ const (
 	local = "local"
 	dev   = "dev"
 	prod  = "prod"
+	test  = "test"
 )
 
 func NewLogger(acfg config.AppConfig) *Logger {
@@ -36,6 +37,8 @@ func NewLogger(acfg config.AppConfig) *Logger {
 		log = slog.New(slog.NewJSONHandler(writer, &slog.HandlerOptions{Level: slog.LevelDebug}))
 	case prod:
 		log = slog.New(slog.NewJSONHandler(writer, &slog.HandlerOptions{Level: slog.LevelInfo}))
+	case test:
+		log = slog.New(slog.NewJSONHandler(io.Discard, &slog.HandlerOptions{Level: slog.LevelError}))
 	default:
 		log = slog.New(slog.NewJSONHandler(writer, &slog.HandlerOptions{Level: slog.LevelInfo}))
 	}

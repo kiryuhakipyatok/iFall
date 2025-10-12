@@ -12,21 +12,23 @@ import (
 	"sync"
 )
 
+//go:generate mockgen -source=iphones-service.go -destination=mocks/iphones-service-mock.go
 type IPhoneService interface {
 	Get(ctx context.Context, id string) (*models.IPhone, error)
 	UpdateAll() ([]models.IPhone, error)
+	Update(ctx context.Context, id string) (*models.IPhone, error)
 }
 
 type iPhoneService struct {
 	IPhoneRepository repositories.IPhoneRepository
-	ApiClient        *client.ApiClient
+	ApiClient        client.ApiClient
 	IPhonesConfig    config.IPhonesConfig
-	EmailSendler     *email.EmailSender
+	EmailSendler     email.EmailSender
 	Logger           *logger.Logger
 	Mutex            sync.Mutex
 }
 
-func NewIPhoneService(ir repositories.IPhoneRepository, ac *client.ApiClient, l *logger.Logger, es *email.EmailSender, cfg config.IPhonesConfig) IPhoneService {
+func NewIPhoneService(ir repositories.IPhoneRepository, ac client.ApiClient, l *logger.Logger, es email.EmailSender, cfg config.IPhonesConfig) IPhoneService {
 	return &iPhoneService{
 		IPhoneRepository: ir,
 		ApiClient:        ac,
@@ -47,10 +49,11 @@ func (is *iPhoneService) Get(ctx context.Context, id string) (*models.IPhone, er
 		log.Error("failed to receive iphone", logger.Err(err))
 		return nil, errs.NewAppError(op, err)
 	}
+	log.Info("iphone received", "id", iphone.Id)
 	return iphone, nil
 }
 
-func (is *iPhoneService) update(ctx context.Context, id string) (*models.IPhone, error) {
+func (is *iPhoneService) Update(ctx context.Context, id string) (*models.IPhone, error) {
 	op := place + "update"
 	log := is.Logger.AddOp(op)
 	log.Info("iphone updating", "id", id)
@@ -60,12 +63,13 @@ func (is *iPhoneService) update(ctx context.Context, id string) (*models.IPhone,
 		return nil, errs.NewAppError(op, err)
 	}
 	is.Mutex.Lock()
+	defer is.Mutex.Unlock()
 	iphone, err := is.IPhoneRepository.Update(ctx, id, iphoneData.Price)
 	if err != nil {
 		log.Error("failed to update iphone", logger.Err(err))
 		return nil, errs.NewAppError(op, err)
 	}
-	is.Mutex.Unlock()
+
 	log.Info("iphone updated", "id", id)
 	return iphone, nil
 }
@@ -100,7 +104,7 @@ func (is *iPhoneService) UpdateAll() ([]models.IPhone, error) {
 			defer wg.Done()
 			ctx, cancel := context.WithTimeout(context.Background(), is.IPhonesConfig.Timeout)
 			defer cancel()
-			iphone, err := is.update(ctx, id)
+			iphone, err := is.Update(ctx, id)
 			if err != nil {
 				errChan <- errStruct{err: err, id: id}
 			} else {

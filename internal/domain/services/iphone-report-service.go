@@ -17,17 +17,15 @@ type IphoneReportService interface {
 }
 
 type iPhoneReportService struct {
-	IPhoneService  IPhoneService
 	UserRepository repositories.UserRepository
 	IPonesConfig   config.IPhonesConfig
-	EmailSender    *email.EmailSender
-	Bot            *bot.TelegramBot
+	EmailSender    email.EmailSender
+	Bot            bot.TelegramBot
 	Logger         *logger.Logger
 }
 
-func NewIPhoneReportService(is IPhoneService, ur repositories.UserRepository, l *logger.Logger, b *bot.TelegramBot, es *email.EmailSender, cfg config.IPhonesConfig) IphoneReportService {
+func NewIPhoneReportService(ur repositories.UserRepository, l *logger.Logger, b bot.TelegramBot, es email.EmailSender, cfg config.IPhonesConfig) IphoneReportService {
 	return &iPhoneReportService{
-		IPhoneService:  is,
 		UserRepository: ur,
 		EmailSender:    es,
 		Bot:            b,

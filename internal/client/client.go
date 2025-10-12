@@ -12,22 +12,27 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-type ApiClient struct {
+//go:generate mockgen -source=client.go -destination=mocks/client-mock.go
+type ApiClient interface {
+	GetIPhoneData(id string) (*models.IPhone, error)
+}
+
+type apiClient struct {
 	Client  *http.Client
 	BaseURL string
 }
 
-func NewClient(cfg config.ApiClientConfig) *ApiClient {
+func NewClient(cfg config.ApiClientConfig) ApiClient {
 	client := http.Client{
 		Timeout: cfg.Timeout,
 	}
-	return &ApiClient{
+	return &apiClient{
 		Client:  &client,
 		BaseURL: cfg.BaseURL,
 	}
 }
 
-func (ac *ApiClient) GetIPhoneData(id string) (*models.IPhone, error) {
+func (ac *apiClient) GetIPhoneData(id string) (*models.IPhone, error) {
 	op := "apiClient.GetIPhoneData"
 	url := fmt.Sprintf("%s/%s", ac.BaseURL, id)
 	req, err := http.NewRequest("GET", url, nil)

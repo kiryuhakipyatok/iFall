@@ -11,19 +11,24 @@ import (
 	"github.com/jordan-wright/email"
 )
 
-type EmailSender struct {
+//go:generate mockgen -source=email.go -destination=mocks/email-mock.go
+type EmailSender interface {
+	SendMessage(ctx context.Context, sub string, content []byte, to []string, attachFiles []string) error
+}
+
+type emailSender struct {
 	Auth        smtp.Auth
 	EmailConfig config.EmailConfig
 }
 
-func NewEmailSender(a smtp.Auth, cfg config.EmailConfig) *EmailSender {
-	return &EmailSender{
+func NewEmailSender(a smtp.Auth, cfg config.EmailConfig) EmailSender {
+	return &emailSender{
 		Auth:        a,
 		EmailConfig: cfg,
 	}
 }
 
-func (es *EmailSender) SendMessage(ctx context.Context, sub string, content []byte, to []string, attachFiles []string) error {
+func (es *emailSender) SendMessage(ctx context.Context, sub string, content []byte, to []string, attachFiles []string) error {
 	op := "emailSender.SendMessage"
 	e := email.NewEmail()
 	e.From = fmt.Sprintf("%s <%s>", es.EmailConfig.Name, es.EmailConfig.Address)
