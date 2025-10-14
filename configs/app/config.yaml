@@ -26,8 +26,9 @@ apiClient:
   timeout: 10s
 
 scheduler:
-  hour: 19
-  minute: 32
+  hour: 18
+  minute: 30
+  emailSupp: true
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"

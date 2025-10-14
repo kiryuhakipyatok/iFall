@@ -9,7 +9,9 @@ import (
 	"iFall/internal/email"
 	"iFall/pkg/errs"
 	"iFall/pkg/logger"
+	"math"
 	"sync"
+	"time"
 )
 
 //go:generate mockgen -source=iphones-service.go -destination=mocks/iphones-service-mock.go
@@ -57,11 +59,26 @@ func (is *iPhoneService) Update(ctx context.Context, id string) (*models.IPhone,
 	op := place + "update"
 	log := is.Logger.AddOp(op)
 	log.Info("iphone updating", "id", id)
-	iphoneData, err := is.ApiClient.GetIPhoneData(id)
+	const (
+		maxRetries = 5
+		baseDelay  = time.Second
+		maxDelay   = 10 * time.Second
+	)
+	var err error
+	iphoneData := &models.IPhone{}
+	for attempt := 0; attempt < maxRetries; attempt++ {
+		iphoneData, err = is.ApiClient.GetIPhoneData(id)
+		if err == nil {
+			break
+		}
+		log.Error("failed to receive iphone data, retrying", logger.Err(err))
+		delay := time.Duration(math.Min(float64(baseDelay)*math.Pow(2, float64(attempt)), float64(maxDelay)))
+		time.Sleep(delay)
+	}
 	if err != nil {
-		log.Error("failed to receive iphone data", logger.Err(err))
 		return nil, errs.NewAppError(op, err)
 	}
+
 	is.Mutex.Lock()
 	defer is.Mutex.Unlock()
 	iphone, err := is.IPhoneRepository.Update(ctx, id, iphoneData.Price)
