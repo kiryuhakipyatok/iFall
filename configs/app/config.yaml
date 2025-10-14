@@ -28,6 +28,7 @@ apiClient:
 scheduler:
   hour: 18
   minute: 40
+  emailSupp: false
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"
