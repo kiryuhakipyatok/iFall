@@ -1,6 +1,5 @@
 services:
   ifall:
-    # build: ./
     image: ifall-image:latest
     env_file:
       - .env
@@ -14,13 +13,11 @@ services:
     stop_grace_period: 5s
 
   migrate:
-    # build: ./
     image: ifall-image:latest
     env_file:
       - .env
     volumes:
       - ./storage:/storage
-    #   - ./internal/migrations:/migrations
     entrypoint: ["goose", "-dir", "/migrations"]
     networks:
       - app-network
