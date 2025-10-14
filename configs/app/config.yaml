@@ -27,7 +27,7 @@ apiClient:
 
 scheduler:
   hour: 13
-  minute: 45
+  minute: 57
 
 iphones:
   black: "apple_iphone_17_256gb_chernyy"
