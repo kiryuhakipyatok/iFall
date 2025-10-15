@@ -15,6 +15,8 @@ type UserRepository interface {
 	SetChatId(ctx context.Context, telegram string, chatId int64) error
 	DropChatId(ctx context.Context, telegram string, chatId int64) error
 	CheckChatId(ctx context.Context, op, telegram string, chatId int64) (bool, error)
+	SetDesiredPrice(ctx context.Context, chatId int64, price float64) error
+	DropDesiredPrice(ctx context.Context, chatId int64) error
 }
 
 type userRepository struct {
@@ -117,4 +119,32 @@ func (ur *userRepository) CheckChatId(ctx context.Context, op, telegram string, 
 	}
 
 	return true, nil
+}
+
+func (ur *userRepository) SetDesiredPrice(ctx context.Context, chatId int64, price float64) error {
+	op := usersRepo + "SetDesiredPrice"
+	query := "UPDATE users SET desired_price = $1 WHERE chat_id = $2"
+	res, err := ur.Storage.DB.ExecContext(ctx, query, price, chatId)
+	if err != nil {
+		return errs.NewAppError(op, err)
+	}
+	nr, _ := res.RowsAffected()
+	if nr == 0 {
+		return errs.ErrNotFound(op)
+	}
+	return nil
+}
+
+func (ur *userRepository) DropDesiredPrice(ctx context.Context, chatId int64) error {
+	op := usersRepo + "DropDesiredPrice"
+	query := "UPDATE users SET desired_price = 0 WHERE chat_id = $1"
+	res, err := ur.Storage.DB.ExecContext(ctx, query, chatId)
+	if err != nil {
+		return errs.NewAppError(op, err)
+	}
+	nr, _ := res.RowsAffected()
+	if nr == 0 {
+		return errs.ErrNotFound(op)
+	}
+	return nil
 }

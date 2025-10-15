@@ -78,6 +78,20 @@ func (mr *MockUserRepositoryMockRecorder) DropChatId(ctx, telegram, chatId inter
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DropChatId", reflect.TypeOf((*MockUserRepository)(nil).DropChatId), ctx, telegram, chatId)
 }
 
+// DropDesiredPrice mocks base method.
+func (m *MockUserRepository) DropDesiredPrice(ctx context.Context, chatId int64) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "DropDesiredPrice", ctx, chatId)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// DropDesiredPrice indicates an expected call of DropDesiredPrice.
+func (mr *MockUserRepositoryMockRecorder) DropDesiredPrice(ctx, chatId interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DropDesiredPrice", reflect.TypeOf((*MockUserRepository)(nil).DropDesiredPrice), ctx, chatId)
+}
+
 // FetchContacts mocks base method.
 func (m *MockUserRepository) FetchContacts(ctx context.Context) ([]models.Contacts, error) {
 	m.ctrl.T.Helper()
@@ -105,4 +119,18 @@ func (m *MockUserRepository) SetChatId(ctx context.Context, telegram string, cha
 func (mr *MockUserRepositoryMockRecorder) SetChatId(ctx, telegram, chatId interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetChatId", reflect.TypeOf((*MockUserRepository)(nil).SetChatId), ctx, telegram, chatId)
+}
+
+// SetDesiredPrice mocks base method.
+func (m *MockUserRepository) SetDesiredPrice(ctx context.Context, chatId int64, price float64) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "SetDesiredPrice", ctx, chatId, price)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// SetDesiredPrice indicates an expected call of SetDesiredPrice.
+func (mr *MockUserRepositoryMockRecorder) SetDesiredPrice(ctx, chatId, price interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetDesiredPrice", reflect.TypeOf((*MockUserRepository)(nil).SetDesiredPrice), ctx, chatId, price)
 }

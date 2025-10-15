@@ -51,7 +51,7 @@ func Run() {
 
 	bot := bot.NewTelegramBot(cfg.TelegramBot, logger, userRepository)
 	logger.Info("bot created successfully")
-	bot.StoreChatId()
+	bot.SetupTelegramBot()
 	defer func() {
 		bot.Stop()
 		logger.Info("bot stopped successfully")

@@ -9,6 +9,7 @@ import (
 	"iFall/internal/domain/repositories"
 	"iFall/pkg/errs"
 	"iFall/pkg/logger"
+	"strconv"
 	"strings"
 	"sync"
 
@@ -17,17 +18,18 @@ import (
 
 //go:generate mockgen -source=bot.go -destination=mocks/bot-mock.go
 type TelegramBot interface {
-	StoreChatId()
+	SetupTelegramBot()
 	SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error
 	Start()
 	Stop()
 }
 
 type telegramBot struct {
-	Bot            *telebot.Bot
-	Config         config.TelegramBotConfig
-	Logger         *logger.Logger
-	UserRepository repositories.UserRepository
+	Bot             *telebot.Bot
+	Config          config.TelegramBotConfig
+	UserRepository  repositories.UserRepository
+	usersStatements sync.Map
+	Logger          *logger.Logger
 }
 
 func NewTelegramBot(cfg config.TelegramBotConfig, l *logger.Logger, ur repositories.UserRepository) TelegramBot {
@@ -49,45 +51,144 @@ func NewTelegramBot(cfg config.TelegramBotConfig, l *logger.Logger, ur repositor
 
 const place = "telegramBot."
 
-func (tb *telegramBot) StoreChatId() {
-	op := place + "StoreChatId"
+func (tb *telegramBot) SetupTelegramBot() {
+	tb.choosePrice()
+	tb.storeChatId()
+}
+
+const (
+	storingChatId  = "s"
+	choosingPrice  = "c"
+	askingForPrice = "a"
+)
+
+func (tb *telegramBot) storeChatId() {
+	op := place + "storeChatId"
 	log := tb.Logger.AddOp(op)
-	log.Info("storing chat id")
-	yes := telebot.Btn{Unique: "yes", Text: "✅ да"}
-	no := telebot.Btn{Unique: "no", Text: "❌ Нет"}
+	yes := telebot.Btn{Unique: "store_chatid_yes", Text: "✅ да"}
+	no := telebot.Btn{Unique: "store_chatid_no", Text: "❌ нет"}
 
 	tb.Bot.Handle("/start", func(c telebot.Context) error {
-		markup := &telebot.ReplyMarkup{}
-		markup.Inline(markup.Row(yes, no))
-		return c.Send("хотите получать обновления цены айфончика 17??", markup)
+		chatId := c.Chat().ID
+		state, ok := tb.usersStatements.Load(chatId)
+		if !ok || state == storingChatId {
+			tb.usersStatements.Store(c.Chat().ID, storingChatId)
+			markup := &telebot.ReplyMarkup{}
+			markup.Inline(markup.Row(yes, no))
+			return c.Send("хотите получать обновления цены айфончика 17??", markup)
+		}
+		return nil
 	})
 	tb.Bot.Handle(&yes, func(c telebot.Context) error {
 		chatId := c.Chat().ID
-		username := c.Sender().Username
-		ctx, cancel := context.WithTimeout(context.Background(), tb.Config.Timeout)
-		defer cancel()
-		if err := tb.UserRepository.SetChatId(ctx, username, chatId); err != nil {
-			if errors.Is(err, errs.ErrAlreadyExistsBase) {
-				return c.Edit("вы уже получаете обновления")
+		state, ok := tb.usersStatements.Load(chatId)
+		if ok && state.(string) == storingChatId {
+			defer tb.usersStatements.Delete(chatId)
+			username := c.Sender().Username
+			ctx, cancel := context.WithTimeout(context.Background(), tb.Config.Timeout)
+			defer cancel()
+			if err := tb.UserRepository.SetChatId(ctx, username, chatId); err != nil {
+				if errors.Is(err, errs.ErrAlreadyExistsBase) {
+					return c.Edit("вы уже получаете обновления")
+				}
+				log.Error("failed to set chat id", logger.Err(err))
+				return c.Edit("произошла ошибка, возможно вы не зарегестрированы((")
 			}
-			log.Error("failed to store chat id", logger.Err(err))
-			return c.Edit("произошла ошибка, возможно вы не зарегестрированы((")
+			return c.Edit("ждите обновления))")
 		}
-		return c.Edit("ждите обновления))")
+		return nil
 	})
 	tb.Bot.Handle(&no, func(c telebot.Context) error {
 		chatId := c.Chat().ID
-		username := c.Sender().Username
+		state, ok := tb.usersStatements.Load(chatId)
+		if ok && state.(string) == storingChatId {
+			defer tb.usersStatements.Delete(chatId)
+			username := c.Sender().Username
+			ctx, cancel := context.WithTimeout(context.Background(), tb.Config.Timeout)
+			defer cancel()
+			if err := tb.UserRepository.DropChatId(ctx, username, chatId); err != nil {
+				if errors.Is(err, errs.ErrNotFoundBase) {
+					return c.Edit("вы не подписаны на обновления")
+				}
+				log.Error("failed to delete chat id", logger.Err(err))
+				return c.Edit("произошла ошибка((")
+			}
+			return c.Edit("обновлений не ждите((")
+		}
+		return nil
+	})
+}
+
+func (tb *telegramBot) choosePrice() {
+	op := place + "choosePrice"
+	log := tb.Logger.AddOp(op)
+	yes := telebot.Btn{Unique: "choose_price_yes", Text: "✅ да2"}
+	no := telebot.Btn{Unique: "choose_price_no", Text: "❌ нет"}
+	tb.Bot.Handle("/setprice", func(c telebot.Context) error {
+		chatId := c.Chat().ID
 		ctx, cancel := context.WithTimeout(context.Background(), tb.Config.Timeout)
 		defer cancel()
-		if err := tb.UserRepository.DropChatId(ctx, username, chatId); err != nil {
-			if errors.Is(err, errs.ErrNotFoundBase) {
-				return c.Edit("вы не подписаны на обновления")
-			}
-			log.Error("failed to drop chat id", logger.Err(err))
-			return c.Edit("произошла ошибка((")
+		exist, err := tb.UserRepository.CheckChatId(ctx, op, c.Sender().Username, chatId)
+		if err != nil {
+			log.Error("failed to check chat id", logger.Err(err))
+			return c.Send("произошла ошибка((")
 		}
-		return c.Edit("обновлений не ждите((")
+		if !exist {
+			_, ok := tb.usersStatements.Load(chatId)
+			if !ok {
+				tb.usersStatements.Store(c.Chat().ID, askingForPrice)
+				markup := &telebot.ReplyMarkup{}
+				markup.Inline(markup.Row(yes, no))
+				return c.Send("хотите установить цену айфончика при достижении которой жоско заспамлю??", markup)
+			}
+		} else {
+			return c.Send("сначала на обновления подпишитесь")
+		}
+		return nil
+	})
+	tb.Bot.Handle(&no, func(c telebot.Context) error {
+		chatId := c.Chat().ID
+		state, ok := tb.usersStatements.Load(chatId)
+		if ok && state.(string) == askingForPrice {
+			tb.usersStatements.Delete(chatId)
+			ctx, cancel := context.WithTimeout(context.Background(), tb.Config.Timeout)
+			defer cancel()
+			if err := tb.UserRepository.DropDesiredPrice(ctx, chatId); err != nil {
+				log.Error("failed to drop desired price", logger.Err(err))
+				return c.Edit("произошла ошибка((")
+			}
+			return c.Edit("нет так нет")
+		}
+		return nil
+	})
+	tb.Bot.Handle(&yes, func(c telebot.Context) error {
+		chatId := c.Chat().ID
+		state, ok := tb.usersStatements.Load(chatId)
+		if ok && state.(string) == askingForPrice {
+			tb.usersStatements.Store(chatId, choosingPrice)
+			return c.Edit("напиши цену, например 2800.52")
+		}
+		return nil
+	})
+	tb.Bot.Handle(telebot.OnText, func(c telebot.Context) error {
+		chatId := c.Chat().ID
+		state, ok := tb.usersStatements.Load(chatId)
+		if ok && state.(string) == choosingPrice {
+			defer tb.usersStatements.Delete(chatId)
+			strPrice := strings.TrimSpace(strings.ReplaceAll(c.Text(), ",", "."))
+			price, err := strconv.ParseFloat(strPrice, 32)
+			if err != nil {
+				return c.Send("❌ неправильный формат цены!!")
+			}
+			ctx, cancel := context.WithTimeout(context.Background(), tb.Config.Timeout)
+			defer cancel()
+			if err := tb.UserRepository.SetDesiredPrice(ctx, chatId, price); err != nil {
+				log.Error("failed to set desired price", logger.Err(err))
+				return c.Send("произошла ошибка((")
+			}
+			return c.Send(fmt.Sprintf("✅ цена установлена: %.2f", price))
+		}
+		return nil
 	})
 }
 
