@@ -5,6 +5,7 @@
 package mock_bot
 
 import (
+	bot "iFall/internal/bot"
 	models "iFall/internal/domain/models"
 	reflect "reflect"
 
@@ -35,17 +36,17 @@ func (m *MockTelegramBot) EXPECT() *MockTelegramBotMockRecorder {
 }
 
 // SendIPhonesInfo mocks base method.
-func (m *MockTelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error {
+func (m *MockTelegramBot) SendIPhonesInfo(datas []bot.DataToSend, iphones []models.IPhone) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SendIPhonesInfo", chatIds, iphones)
+	ret := m.ctrl.Call(m, "SendIPhonesInfo", datas, iphones)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // SendIPhonesInfo indicates an expected call of SendIPhonesInfo.
-func (mr *MockTelegramBotMockRecorder) SendIPhonesInfo(chatIds, iphones interface{}) *gomock.Call {
+func (mr *MockTelegramBotMockRecorder) SendIPhonesInfo(datas, iphones interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendIPhonesInfo", reflect.TypeOf((*MockTelegramBot)(nil).SendIPhonesInfo), chatIds, iphones)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendIPhonesInfo", reflect.TypeOf((*MockTelegramBot)(nil).SendIPhonesInfo), datas, iphones)
 }
 
 // SetupTelegramBot mocks base method.

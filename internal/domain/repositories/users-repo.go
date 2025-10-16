@@ -80,7 +80,7 @@ func (ur *userRepository) SetChatId(ctx context.Context, telegram string, chatId
 
 func (ur *userRepository) FetchContacts(ctx context.Context) ([]models.Contacts, error) {
 	op := usersRepo + "FetchContacts"
-	query := "SELECT email, chat_id FROM users"
+	query := "SELECT email, chat_id, desired_price FROM users"
 	contacts := []models.Contacts{}
 	res, err := ur.Storage.DB.QueryContext(ctx, query)
 	if err != nil {
@@ -92,6 +92,7 @@ func (ur *userRepository) FetchContacts(ctx context.Context) ([]models.Contacts,
 		if err := res.Scan(
 			&contact.Email,
 			&contact.ChatId,
+			&contact.DesiredPrice,
 		); err != nil {
 			return nil, errs.NewAppError(op, err)
 		}

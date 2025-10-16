@@ -16,10 +16,15 @@ import (
 	telebot "gopkg.in/telebot.v4"
 )
 
+type DataToSend struct {
+	Price  float64
+	ChatId int64
+}
+
 //go:generate mockgen -source=bot.go -destination=mocks/bot-mock.go
 type TelegramBot interface {
 	SetupTelegramBot()
-	SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error
+	SendIPhonesInfo(datas []DataToSend, iphones []models.IPhone) error
 	Start()
 	Stop()
 }
@@ -205,10 +210,29 @@ const (
 	zero     = ""
 )
 
-func (tb *telegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error {
+func (tb *telegramBot) SendIPhonesInfo(datas []DataToSend, iphones []models.IPhone) error {
 	op := place + "SendIphoneInfo"
 	msgArr := []string{}
+	spam := sync.Map{}
+	var wg sync.WaitGroup
+	pricesChan := make(chan float64, len(iphones))
+
+	for _, data := range datas {
+		wg.Add(1)
+		go func(d DataToSend) {
+			defer wg.Done()
+			for price := range pricesChan {
+				if d.Price >= price && d.Price != 0 {
+					spam.Store(d.ChatId, struct{}{})
+				}
+			}
+		}(data)
+	}
+
 	for _, iphone := range iphones {
+
+		pricesChan <- iphone.Price
+
 		graf := grafDef
 		color := white
 		sign := zero
@@ -233,27 +257,35 @@ func (tb *telegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone)
 		}
 		msgArr = append(msgArr, fmt.Sprintf("%s %s:\n 💰 цена: %.2f | %s разница: %s%.2f\n", iphone.Name, color, iphone.Price, graf, sign, iphone.Change))
 	}
+	close(pricesChan)
+	wg.Wait()
 	msg := strings.Join(msgArr, "\n")
-	errChan := make(chan error, len(chatIds))
-	var wg sync.WaitGroup
-	for _, cid := range chatIds {
+	errChan := make(chan error, len(datas))
+	wg = sync.WaitGroup{}
+	for _, data := range datas {
 		wg.Add(1)
-		go func(id int64) {
+		go func(data DataToSend) {
 			defer wg.Done()
-			if _, err := tb.Bot.Send(&telebot.Chat{ID: id}, msg, telebot.ModeMarkdown); err != nil {
-				errChan <- err
+			n := 1
+			message := msg
+			if _, ok := spam.Load(data.ChatId); ok {
+				n = 15
+				message += fmt.Sprintf("\nкакой-то айфон стоит сток скок вы хотели❗❗❗\nа именно %.2f 🥶🥶🥶", data.Price)
 			}
-		}(cid)
+			for range n {
+				if _, err := tb.Bot.Send(&telebot.Chat{ID: data.ChatId}, message, telebot.ModeMarkdown); err != nil {
+					errChan <- err
+				}
+			}
+
+		}(data)
 	}
 	go func() {
 		wg.Wait()
 		close(errChan)
 	}()
-	if len(errChan) > 0 {
-		for err := range errChan {
-
-			return errs.NewAppError(op, err)
-		}
+	for err := range errChan {
+		return errs.NewAppError(op, err)
 	}
 	return nil
 }

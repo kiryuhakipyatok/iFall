@@ -45,21 +45,25 @@ func (irs *iPhoneReportService) SendIPhonesInfo(emailSupp bool, iphones []models
 		return errs.NewAppError(op, err)
 	}
 	emails := []string{}
-	chatIds := []int64{}
+	datas := []bot.DataToSend{}
 	if len(contacts) > 0 {
 		for _, c := range contacts {
 			if emailSupp {
 				emails = append(emails, c.Email)
 			}
 			if c.ChatId != nil {
-				chatIds = append(chatIds, *c.ChatId)
+				data := bot.DataToSend{
+					Price:  c.DesiredPrice,
+					ChatId: *c.ChatId,
+				}
+				datas = append(datas, data)
 			}
 		}
 	} else {
 		return nil
 	}
 
-	errlen := len(chatIds) + 1
+	errlen := len(datas) + 1
 	if emailSupp {
 		errlen = len(contacts) + 1
 	}
@@ -85,12 +89,12 @@ func (irs *iPhoneReportService) SendIPhonesInfo(emailSupp bool, iphones []models
 			}()
 		}
 	}
-	if len(chatIds) > 0 {
+	if len(datas) > 0 {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
 			log.Info("sending on telegrams")
-			if err := irs.Bot.SendIPhonesInfo(chatIds, iphones); err != nil {
+			if err := irs.Bot.SendIPhonesInfo(datas, iphones); err != nil {
 				errChan <- err
 			}
 		}()
