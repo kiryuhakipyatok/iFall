@@ -17,7 +17,7 @@ docker-run-infra:
 docker-run-app:
 	@docker-compose up ifall --build
 
-docker-run-all: docker-migrate-up docker-run-app
+docker-run-all: test docker-migrate-up docker-run-app
 
 docker-down:
 	@docker-compose down

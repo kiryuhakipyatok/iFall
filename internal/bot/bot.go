@@ -181,6 +181,9 @@ func (tb *telegramBot) choosePrice() {
 		if ok && state.(string) == choosingPrice {
 			defer tb.usersStatements.Delete(chatId)
 			strPrice := strings.TrimSpace(strings.ReplaceAll(c.Text(), ",", "."))
+			if strings.HasPrefix(strPrice, "-") {
+				return c.Send("❌ цена не может быть отрицательной")
+			}
 			price, err := strconv.ParseFloat(strPrice, 32)
 			if err != nil {
 				return c.Send("❌ неправильный формат цены!!")

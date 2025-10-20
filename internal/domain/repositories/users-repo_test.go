@@ -93,14 +93,17 @@ func TestUserRepository_Create(t *testing.T) {
     		name TEXT NOT NULL UNIQUE,
     		email TEXT NOT NULL UNIQUE,
     		telegram TEXT UNIQUE,
-    		chat_id INTEGER UNIQUE
+    		chat_id INTEGER UNIQUE,
+			desired_price NUMERIC NOT NULL DEFAULT 0
 		);
 	`
 	if _, err := storage.DB.Exec(schema); err != nil {
 		t.Fatalf("failed to create test users table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "kir", "kir@gmail.com", "kirtg", nil); err != nil {
+	query := "INSERT INTO users (id, name, email, telegram, chat_id, desired_price) VALUES($1, $2, $3, $4, $5, $6)"
+
+	if _, err := storage.DB.Exec(query, uuid.New(), "kir", "kir@gmail.com", "kirtg", nil, 2441); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
@@ -165,14 +168,17 @@ func TestUserRepository_DropChatId(t *testing.T) {
     		name TEXT NOT NULL UNIQUE,
     		email TEXT NOT NULL UNIQUE,
     		telegram TEXT UNIQUE,
-    		chat_id INTEGER UNIQUE
+    		chat_id INTEGER UNIQUE,
+			desired_price NUMERIC NOT NULL DEFAULT 0
 		);
 	`
 	if _, err := storage.DB.Exec(schema); err != nil {
 		t.Fatalf("failed to create test users table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "kir", "kir@gmail.com", "kirtg", 123123); err != nil {
+	query := "INSERT INTO users (id, name, email, telegram, chat_id, desired_price) VALUES($1, $2, $3, $4, $5, $6)"
+
+	if _, err := storage.DB.Exec(query, uuid.New(), "kir", "kir@gmail.com", "kirtg", 123123, 2900); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
@@ -224,18 +230,21 @@ func TestUserRepository_SetChatId(t *testing.T) {
     		name TEXT NOT NULL UNIQUE,
     		email TEXT NOT NULL UNIQUE,
     		telegram TEXT UNIQUE,
-    		chat_id INTEGER UNIQUE
+    		chat_id INTEGER UNIQUE,
+			desired_price NUMERIC NOT NULL DEFAULT 0
 		);
 	`
 	if _, err := storage.DB.Exec(schema); err != nil {
 		t.Fatalf("failed to create test users table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "kir", "kir@gmail.com", "kirtg", nil); err != nil {
+	query := "INSERT INTO users (id, name, email, telegram, chat_id, desired_price) VALUES($1, $2, $3, $4, $5, $6)"
+
+	if _, err := storage.DB.Exec(query, uuid.New(), "kir", "kir@gmail.com", "kirtg", nil, 2800); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "sanya", "san@gmail.com", "santg", 123123); err != nil {
+	if _, err := storage.DB.Exec(query, uuid.New(), "sanya", "san@gmail.com", "santg", 123123, 0); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
@@ -263,11 +272,14 @@ func TestUserRepository_FetchContacts(t *testing.T) {
 			testName: "success fetching",
 			expectedResult: []models.Contacts{
 				{
-					Email:  "kiremail",
-					ChatId: utils.Int64ToPtr(123123),
+					Email:        "kiremail",
+					ChatId:       utils.Int64ToPtr(123123),
+					DesiredPrice: 2800.0,
 				},
 				{
-					Email: "gusemail",
+					Email:        "gusemail",
+					ChatId:       nil,
+					DesiredPrice: 0.0,
 				},
 			},
 			expectedError: nil,
@@ -286,18 +298,21 @@ func TestUserRepository_FetchContacts(t *testing.T) {
     		name TEXT NOT NULL UNIQUE,
     		email TEXT NOT NULL UNIQUE,
     		telegram TEXT UNIQUE,
-    		chat_id INTEGER UNIQUE
+    		chat_id INTEGER UNIQUE,
+			desired_price NUMERIC NOT NULL DEFAULT 0
 		);
 	`
 	if _, err := storage.DB.Exec(schema); err != nil {
 		t.Fatalf("failed to create test users table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "kir", "kiremail", "kirtg", 123123); err != nil {
+	query := "INSERT INTO users (id, name, email, telegram, chat_id, desired_price) VALUES($1, $2, $3, $4, $5, $6)"
+
+	if _, err := storage.DB.Exec(query, uuid.New(), "kir", "kiremail", "kirtg", 123123, 2800.0); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "sanya", "gusemail", "gustg", nil); err != nil {
+	if _, err := storage.DB.Exec(query, uuid.New(), "sanya", "gusemail", nil, nil, 0.0); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
@@ -366,18 +381,21 @@ func TestUserRepository_CheckChatId(t *testing.T) {
     		name TEXT NOT NULL UNIQUE,
     		email TEXT NOT NULL UNIQUE,
     		telegram TEXT UNIQUE,
-    		chat_id INTEGER UNIQUE
+    		chat_id INTEGER UNIQUE,
+			desired_price NUMERIC NOT NULL DEFAULT 0
 		);
 	`
 	if _, err := storage.DB.Exec(schema); err != nil {
 		t.Fatalf("failed to create test users table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "kir", "kiremail", "tg1", 123123); err != nil {
+	query := "INSERT INTO users (id, name, email, telegram, chat_id, desired_price) VALUES($1, $2, $3, $4, $5, $6)"
+
+	if _, err := storage.DB.Exec(query, uuid.New(), "kir", "kiremail", "tg1", 123123, 2900); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
-	if _, err := storage.DB.Exec("INSERT INTO users (id, name, email, telegram, chat_id) VALUES($1, $2, $3, $4, $5)", uuid.New(), "sanya", "gusemail", "tg2", nil); err != nil {
+	if _, err := storage.DB.Exec(query, uuid.New(), "sanya", "gusemail", "tg2", nil, 0); err != nil {
 		t.Fatalf("failed to insert test user data in the table: %v", err)
 	}
 
@@ -394,4 +412,116 @@ func TestUserRepository_CheckChatId(t *testing.T) {
 			assert.Equal(t, tt.expectedResult, exist)
 		})
 	}
+}
+
+func TestUserRepository_SetDesiredPrice(t *testing.T) {
+	tests := []struct {
+		testName      string
+		chatId        int64
+		desiredPrice  float64
+		expectedError error
+	}{
+		{
+			testName:      "success setting",
+			chatId:        123123,
+			desiredPrice:  2800.0,
+			expectedError: nil,
+		},
+		{
+			testName:      "not found",
+			chatId:        456456,
+			desiredPrice:  1500.0,
+			expectedError: errs.ErrNotFoundBase,
+		},
+	}
+
+	storage := storage.MustConnect(config.StorageConfig{Path: ":memory:", PingTimeout: time.Second})
+	schema := `
+		CREATE TABLE IF NOT EXISTS users (
+    		id TEXT PRIMARY KEY,
+    		name TEXT NOT NULL UNIQUE,
+    		email TEXT NOT NULL UNIQUE,
+    		telegram TEXT UNIQUE,
+    		chat_id INTEGER UNIQUE,
+			desired_price NUMERIC NOT NULL DEFAULT 0
+		);
+	`
+	if _, err := storage.DB.Exec(schema); err != nil {
+		t.Fatalf("failed to create test users table: %v", err)
+	}
+
+	query := "INSERT INTO users (id, name, email, telegram, chat_id, desired_price) VALUES($1, $2, $3, $4, $5, $6)"
+
+	if _, err := storage.DB.Exec(query, uuid.New(), "kir", "kiremail", "tg1", 123123, 0); err != nil {
+		t.Fatalf("failed to insert test user data in the table: %v", err)
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.testName, func(t *testing.T) {
+			repo := NewUserRepository(storage)
+			err := repo.SetDesiredPrice(context.Background(), tt.chatId, tt.desiredPrice)
+			if tt.expectedError == nil {
+				assert.NoError(t, err)
+			} else {
+				assert.Error(t, err)
+				assert.ErrorIs(t, err, tt.expectedError)
+			}
+		})
+	}
+
+}
+
+func TestUserRepository_DropDesiredPrice(t *testing.T) {
+	tests := []struct {
+		testName      string
+		chatId        int64
+		desiredPrice  float64
+		expectedError error
+	}{
+		{
+			testName:      "success dropping",
+			chatId:        123123,
+			expectedError: nil,
+		},
+		{
+			testName:      "not found",
+			chatId:        456456,
+			expectedError: errs.ErrNotFoundBase,
+		},
+	}
+
+	storage := storage.MustConnect(config.StorageConfig{Path: ":memory:", PingTimeout: time.Second})
+	schema := `
+		CREATE TABLE IF NOT EXISTS users (
+    		id TEXT PRIMARY KEY,
+    		name TEXT NOT NULL UNIQUE,
+    		email TEXT NOT NULL UNIQUE,
+    		telegram TEXT UNIQUE,
+    		chat_id INTEGER UNIQUE,
+			desired_price NUMERIC NOT NULL DEFAULT 0
+		);
+	`
+	if _, err := storage.DB.Exec(schema); err != nil {
+		t.Fatalf("failed to create test users table: %v", err)
+	}
+
+	query := "INSERT INTO users (id, name, email, telegram, chat_id, desired_price) VALUES($1, $2, $3, $4, $5, $6)"
+
+	if _, err := storage.DB.Exec(query, uuid.New(), "kir", "kiremail", "tg1", 123123, 0); err != nil {
+		t.Fatalf("failed to insert test user data in the table: %v", err)
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.testName, func(t *testing.T) {
+			repo := NewUserRepository(storage)
+			err := repo.DropDesiredPrice(context.Background(), tt.chatId)
+			if tt.expectedError == nil {
+				assert.NoError(t, err)
+			} else {
+				assert.Error(t, err)
+				assert.ErrorIs(t, err, tt.expectedError)
+			}
+		})
+	}
+
 }
