@@ -9,7 +9,8 @@ type User struct {
 }
 
 type Contacts struct {
-	Email    string  `json:"email"`
-	Telegram *string `json:"telegram"`
-	ChatId   *int64  `json:"-"`
+	Email        string  `json:"email"`
+	Telegram     *string `json:"telegram"`
+	ChatId       *int64  `json:"-"`
+	DesiredPrice float64 `json:"desired_price"`
 }

@@ -5,6 +5,7 @@
 package mock_bot
 
 import (
+	bot "iFall/internal/bot"
 	models "iFall/internal/domain/models"
 	reflect "reflect"
 
@@ -35,17 +36,29 @@ func (m *MockTelegramBot) EXPECT() *MockTelegramBotMockRecorder {
 }
 
 // SendIPhonesInfo mocks base method.
-func (m *MockTelegramBot) SendIPhonesInfo(chatIds []int64, iphones []models.IPhone) error {
+func (m *MockTelegramBot) SendIPhonesInfo(datas []bot.DataToSend, iphones []models.IPhone) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "SendIPhonesInfo", chatIds, iphones)
+	ret := m.ctrl.Call(m, "SendIPhonesInfo", datas, iphones)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // SendIPhonesInfo indicates an expected call of SendIPhonesInfo.
-func (mr *MockTelegramBotMockRecorder) SendIPhonesInfo(chatIds, iphones interface{}) *gomock.Call {
+func (mr *MockTelegramBotMockRecorder) SendIPhonesInfo(datas, iphones interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendIPhonesInfo", reflect.TypeOf((*MockTelegramBot)(nil).SendIPhonesInfo), chatIds, iphones)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SendIPhonesInfo", reflect.TypeOf((*MockTelegramBot)(nil).SendIPhonesInfo), datas, iphones)
+}
+
+// SetupTelegramBot mocks base method.
+func (m *MockTelegramBot) SetupTelegramBot() {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetupTelegramBot")
+}
+
+// SetupTelegramBot indicates an expected call of SetupTelegramBot.
+func (mr *MockTelegramBotMockRecorder) SetupTelegramBot() *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "SetupTelegramBot", reflect.TypeOf((*MockTelegramBot)(nil).SetupTelegramBot))
 }
 
 // Start mocks base method.
@@ -70,16 +83,4 @@ func (m *MockTelegramBot) Stop() {
 func (mr *MockTelegramBotMockRecorder) Stop() *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Stop", reflect.TypeOf((*MockTelegramBot)(nil).Stop))
-}
-
-// StoreChatId mocks base method.
-func (m *MockTelegramBot) StoreChatId() {
-	m.ctrl.T.Helper()
-	m.ctrl.Call(m, "StoreChatId")
-}
-
-// StoreChatId indicates an expected call of StoreChatId.
-func (mr *MockTelegramBotMockRecorder) StoreChatId() *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "StoreChatId", reflect.TypeOf((*MockTelegramBot)(nil).StoreChatId))
 }
