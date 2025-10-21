@@ -26,8 +26,8 @@ apiClient:
   timeout: 10s
 
 scheduler:
-  hour: 14
-  minute: 0
+  hour: 18
+  minute: 43
   emailSupp: false
 
 iphones:
