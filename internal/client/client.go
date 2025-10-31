@@ -56,8 +56,9 @@ func (ac *apiClient) GetIPhoneData(id string) (*models.IPhone, error) {
 	priceSel := doc.Find(".price-block .price:not(.old)").First()
 	rawPrice := strings.TrimSpace(priceSel.Text())
 	strPriceWithoutSpaces := strings.ReplaceAll(rawPrice, " ", "")
-	strPrice := strings.ReplaceAll(strPriceWithoutSpaces, "/", "")
-	floatPrice, err := strconv.ParseFloat(strPrice, 32)
+	fStrPrice := strings.ReplaceAll(strPriceWithoutSpaces, "/", "")
+	sStrPrice := strings.ReplaceAll(fStrPrice, "\\", "")
+	floatPrice, err := strconv.ParseFloat(sStrPrice, 32)
 	if err != nil {
 		return nil, errs.NewAppError(op, err)
 	}
