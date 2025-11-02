@@ -1,6 +1,6 @@
 -- +goose Up
 -- +goose StatementBegin
-INSERT INTO iphones VALUES (id, name, price, change, color) VALUES 
+INSERT INTO iphones (id, name, price, change, color) VALUES 
 ('apple_iphone_17_256gb_chernyy', 'Apple iPhone 17 256GB (черный)', 3191, 0, '353839'),
 ('apple_iphone_17_256gb_belyy', 'Apple iPhone 17 256GB (белый)', 3191.3, 0, 'F5F5F5'),
 ('apple_iphone_17_256gb_goluboy', 'iPhone 17 256GB (голубой)', 3191.3, 0, '96AED1'),
