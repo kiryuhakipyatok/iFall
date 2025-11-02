@@ -31,7 +31,7 @@ func NewScheduler(is services.IPhoneService, irs services.IphoneReportService, l
 }
 
 func (s *Scheduler) Start() {
-	if _, err := s.Cron.AddFunc(fmt.Sprintf("%d %d * * *", s.SchedulerConfig.Minute, s.SchedulerConfig.Hour), func() {
+	if _, err := s.Cron.AddFunc(fmt.Sprintf("%d %d,%d * * *", s.SchedulerConfig.Minute, s.SchedulerConfig.FirstHour, s.SchedulerConfig.SecondHour), func() {
 		op := "scheduler.IphonesPriceChecking"
 		log := s.Logger.AddOp(op)
 		iphones, err := s.IPhoneService.UpdateAll()

@@ -54,9 +54,10 @@ type ApiClientConfig struct {
 }
 
 type SchedulerConfig struct {
-	Hour      int  `mapstructure:"hour"`
-	Minute    int  `mapstructure:"minute"`
-	EmailSupp bool `mapstructure:"emailSupp"`
+	FirstHour  int  `mapstructure:"firstHour"`
+	SecondHour int  `mapstructure:"secondHour"`
+	Minute     int  `mapstructure:"minute"`
+	EmailSupp  bool `mapstructure:"emailSupp"`
 }
 
 type IPhonesConfig struct {
