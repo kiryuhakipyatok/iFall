@@ -27,7 +27,7 @@ apiClient:
 
 scheduler:
   hour: 15
-  minute: 34
+  minute: 38
   emailSupp: false
 
 iphones:
