@@ -36,6 +36,9 @@ iphones:
   white: "apple_iphone_17_256gb_belyy"
   green: "apple_iphone_17_256gb_zelenyy"
   pink: "apple_iphone_17_256gb_sirenevyy"
+  blackEsim: "apple_iphone_17_dual_esim_256gb_chernyy"
+  blueEsim: "apple_iphone_17_dual_esim_256gb_goluboy"
+  pinkEsim: "apple_iphone_17_dual_esim_256gb_sirenevyy"
   timeout: 5s
 
 telegramBot:

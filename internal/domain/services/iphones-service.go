@@ -101,6 +101,9 @@ func (is *iPhoneService) UpdateAll() ([]models.IPhone, error) {
 		is.IPhonesConfig.White,
 		is.IPhonesConfig.Blue,
 		is.IPhonesConfig.Pink,
+		is.IPhonesConfig.BlackEsim,
+		is.IPhonesConfig.BlueEsim,
+		is.IPhonesConfig.PinkEsim,
 	}
 
 	type errStruct struct {

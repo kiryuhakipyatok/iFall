@@ -60,12 +60,15 @@ type SchedulerConfig struct {
 }
 
 type IPhonesConfig struct {
-	Black   string        `mapstructure:"black"`
-	White   string        `mapstructure:"white"`
-	Green   string        `mapstructure:"green"`
-	Pink    string        `mapstructure:"pink"`
-	Blue    string        `mapstructure:"blue"`
-	Timeout time.Duration `mapstructure:"timeout"`
+	Black     string        `mapstructure:"black"`
+	White     string        `mapstructure:"white"`
+	Green     string        `mapstructure:"green"`
+	Pink      string        `mapstructure:"pink"`
+	Blue      string        `mapstructure:"blue"`
+	BlackEsim string        `mapstructure:"blackEsim"`
+	BlueEsim  string        `mapstructure:"blueEsim"`
+	PinkEsim  string        `mapstructure:"pinkEsim"`
+	Timeout   time.Duration `mapstructure:"timeout"`
 }
 
 type TelegramBotConfig struct {
